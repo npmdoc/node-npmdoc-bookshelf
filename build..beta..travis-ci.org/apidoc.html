@@ -1,0 +1,2857 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="http://bookshelfjs.org"
+
+    >bookshelf (v0.10.3)</a>
+</h1>
+<h4>A lightweight ORM for PostgreSQL, MySQL, and SQLite3</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.bookshelf">module bookshelf</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.initialize">
+            function <span class="apidocSignatureSpan">bookshelf.</span>initialize
+            <span class="apidocSignatureSpan">(knex)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model">
+            function <span class="apidocSignatureSpan">bookshelf.</span>model
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.sync">
+            function <span class="apidocSignatureSpan">bookshelf.</span>sync
+            <span class="apidocSignatureSpan">(syncing, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">bookshelf.</span>collection</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">bookshelf.</span>eager</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">bookshelf.</span>errors</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">bookshelf.</span>helpers</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">bookshelf.</span>model.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">bookshelf.</span>relation</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">bookshelf.</span>sync.prototype</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.bookshelf.collection">module bookshelf.collection</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.collection.default">
+            function <span class="apidocSignatureSpan">bookshelf.collection.</span>default
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.bookshelf.eager">module bookshelf.eager</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.eager.default">
+            function <span class="apidocSignatureSpan">bookshelf.eager.</span>default
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.bookshelf.errors">module bookshelf.errors</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.errors.EmptyError">
+            function <span class="apidocSignatureSpan">bookshelf.errors.</span>EmptyError
+            <span class="apidocSignatureSpan">(message, obj)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.errors.NoRowsDeletedError">
+            function <span class="apidocSignatureSpan">bookshelf.errors.</span>NoRowsDeletedError
+            <span class="apidocSignatureSpan">(message, obj)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.errors.NoRowsUpdatedError">
+            function <span class="apidocSignatureSpan">bookshelf.errors.</span>NoRowsUpdatedError
+            <span class="apidocSignatureSpan">(message, obj)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.errors.NotFoundError">
+            function <span class="apidocSignatureSpan">bookshelf.errors.</span>NotFoundError
+            <span class="apidocSignatureSpan">(message, obj)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.bookshelf.helpers">module bookshelf.helpers</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.helpers.deprecate">
+            function <span class="apidocSignatureSpan">bookshelf.helpers.</span>deprecate
+            <span class="apidocSignatureSpan">(a, b)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.helpers.error">
+            function <span class="apidocSignatureSpan">bookshelf.helpers.</span>error
+            <span class="apidocSignatureSpan">(msg)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.helpers.morphCandidate">
+            function <span class="apidocSignatureSpan">bookshelf.helpers.</span>morphCandidate
+            <span class="apidocSignatureSpan">(candidates, foreignTable)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.helpers.orderBy">
+            function <span class="apidocSignatureSpan">bookshelf.helpers.</span>orderBy
+            <span class="apidocSignatureSpan">(obj, sort, order)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.helpers.query">
+            function <span class="apidocSignatureSpan">bookshelf.helpers.</span>query
+            <span class="apidocSignatureSpan">(obj, args)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.helpers.saveConstraints">
+            function <span class="apidocSignatureSpan">bookshelf.helpers.</span>saveConstraints
+            <span class="apidocSignatureSpan">(model, relatedData)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.helpers.warn">
+            function <span class="apidocSignatureSpan">bookshelf.helpers.</span>warn
+            <span class="apidocSignatureSpan">(msg)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.bookshelf.model">module bookshelf.model</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.model">
+            function <span class="apidocSignatureSpan">bookshelf.</span>model
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.NoRowsDeletedError">
+            function <span class="apidocSignatureSpan">bookshelf.model.</span>NoRowsDeletedError
+            <span class="apidocSignatureSpan">(message, obj)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.NoRowsUpdatedError">
+            function <span class="apidocSignatureSpan">bookshelf.model.</span>NoRowsUpdatedError
+            <span class="apidocSignatureSpan">(message, obj)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.NotFoundError">
+            function <span class="apidocSignatureSpan">bookshelf.model.</span>NotFoundError
+            <span class="apidocSignatureSpan">(message, obj)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.extend">
+            function <span class="apidocSignatureSpan">bookshelf.model.</span>extend
+            <span class="apidocSignatureSpan">(protoProps, staticProps)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.extended">
+            function <span class="apidocSignatureSpan">bookshelf.model.</span>extended
+            <span class="apidocSignatureSpan">(child)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.super_">
+            function <span class="apidocSignatureSpan">bookshelf.model.</span>super_
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">bookshelf.model.</span>__super__</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.bookshelf.model.prototype">module bookshelf.model.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype._doFetch">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>_doFetch
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype._handleEager">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>_handleEager
+            <span class="apidocSignatureSpan">(response, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype._handleResponse">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>_handleResponse
+            <span class="apidocSignatureSpan">(response)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype._morphOneOrMany">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>_morphOneOrMany
+            <span class="apidocSignatureSpan">(Target, morphName, columnNames, morphValue, type)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype.all">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>all
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype.belongsTo">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>belongsTo
+            <span class="apidocSignatureSpan">(Target, foreignKey, foreignKeyTarget)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype.belongsToMany">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>belongsToMany
+            <span class="apidocSignatureSpan">(Target, joinTableName, foreignKey, otherKey, foreignKeyTarget, otherKeyTarget)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype.clone">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>clone
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype.count">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>count
+            <span class="apidocSignatureSpan">(column, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype.destroy">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>destroy
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype.fetch">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>fetch
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype.fetchAll">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>fetchAll
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype.hasMany">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>hasMany
+            <span class="apidocSignatureSpan">(Target, foreignKey, foreignKeyTarget)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype.hasOne">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>hasOne
+            <span class="apidocSignatureSpan">(Target, foreignKey, foreignKeyTarget)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype.load">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>load
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype.morphMany">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>morphMany
+            <span class="apidocSignatureSpan">(Target, name, columnNames, morphValue)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype.morphOne">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>morphOne
+            <span class="apidocSignatureSpan">(Target, name, columnNames, morphValue)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype.morphTo">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>morphTo
+            <span class="apidocSignatureSpan">(morphName)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype.orderBy">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>orderBy
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype.query">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>query
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype.refresh">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>refresh
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype.resetQuery">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>resetQuery
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype.save">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>save
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype.sync">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>sync
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype.through">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>through
+            <span class="apidocSignatureSpan">(Interim, throughForeignKey, otherKey, throughForeignKeyTarget, otherKeyTarget)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.model.prototype.where">
+            function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>where
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.bookshelf.relation">module bookshelf.relation</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.relation.default">
+            function <span class="apidocSignatureSpan">bookshelf.relation.</span>default
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.bookshelf.sync">module bookshelf.sync</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.sync.sync">
+            function <span class="apidocSignatureSpan">bookshelf.</span>sync
+            <span class="apidocSignatureSpan">(syncing, options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.bookshelf.sync.prototype">module bookshelf.sync.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.sync.prototype.count">
+            function <span class="apidocSignatureSpan">bookshelf.sync.prototype.</span>count
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.sync.prototype.del">
+            function <span class="apidocSignatureSpan">bookshelf.sync.prototype.</span>del
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.sync.prototype.first">
+            function <span class="apidocSignatureSpan">bookshelf.sync.prototype.</span>first
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.sync.prototype.insert">
+            function <span class="apidocSignatureSpan">bookshelf.sync.prototype.</span>insert
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.sync.prototype.prefixFields">
+            function <span class="apidocSignatureSpan">bookshelf.sync.prototype.</span>prefixFields
+            <span class="apidocSignatureSpan">(fields)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.sync.prototype.select">
+            function <span class="apidocSignatureSpan">bookshelf.sync.prototype.</span>select
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bookshelf.sync.prototype.update">
+            function <span class="apidocSignatureSpan">bookshelf.sync.prototype.</span>update
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.bookshelf" id="apidoc.module.bookshelf">module bookshelf</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.initialize" id="apidoc.element.bookshelf.initialize">
+        function <span class="apidocSignatureSpan">bookshelf.</span>initialize
+        <span class="apidocSignatureSpan">(knex)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">initialize = function (knex) {
+  _helpers2.default.warn(&#x22;Bookshelf.initialize is deprecated, pass knex directly: require(&#x27;bookshelf&#x27;)(knex)&#x22;);
+  return new Bookshelf(knex);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model" id="apidoc.element.bookshelf.model">
+        function <span class="apidocSignatureSpan">bookshelf.</span>model
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">model = function () {
+  return Parent.apply(this, arguments);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ *  Optionally run the query in a transaction.
+ *
+ * @throws {Model.NotFoundError}
+ * @returns {Promise&#x3c;Model|null&#x3e;}
+ *  A promise resolving to the fetched {@link Model model} or `null` if none exists.
+ */
+fetchOne: _promise2.default.method(function (options) {
+  var model = new this.<span class="apidocCodeKeywordSpan">model</span>();
+  model._knex = this.query().clone();
+  this.resetQuery();
+  if (this.relatedData) model.relatedData = this.relatedData;
+  return model.fetch(options);
+}),
+
+/**
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.sync" id="apidoc.element.bookshelf.sync">
+        function <span class="apidocSignatureSpan">bookshelf.</span>sync
+        <span class="apidocSignatureSpan">(syncing, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Sync(syncing, options) {
+  options = options || {};
+  this.query = syncing.query();
+  this.syncing = syncing.resetQuery();
+  this.options = options;
+  if (options.debug) this.query.debug();
+  if (options.transacting) this.query.transacting(options.transacting);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+   * @param {Object=} options
+   * @param {bool} [options.require=false] Trigger a {@link Collection.EmptyError} if no records are found.
+   * @param {string|string[]} [options.withRelated=[]] A relation, or list of relations, to be eager loaded as part of the `fetch
+` operation.
+   * @returns {Promise&#x3c;Collection&#x3e;}
+   */
+  fetch: _promise2.default.method(function (options) {
+options = options ? (0, _lodash.clone)(options) : {};
+return this.<span class="apidocCodeKeywordSpan">sync</span>(options).select().bind(this).tap(function (response) {
+  if (!response || response.length === 0) {
+    throw new this.constructor.EmptyError(&#x27;EmptyResponse&#x27;);
+  }
+})
+
+// Now, load all of the data onto the collection as necessary.
+.tap(this._handleResponse)
+...</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.bookshelf.collection" id="apidoc.module.bookshelf.collection">module bookshelf.collection</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.collection.default" id="apidoc.element.bookshelf.collection.default">
+        function <span class="apidocSignatureSpan">bookshelf.collection.</span>default
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">default = function () {
+  return Parent.apply(this, arguments);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ *
+ *  @returns {Promise&#x3c;Collection&#x3e;} A promise resolving to this {@link
+ *  Collection collection}
+ */
+load: _promise2.default.method(function (relations, options) {
+  if (!(0, _lodash.isArray)(relations)) relations = [relations];
+  options = (0, _lodash.extend)({}, options, { shallow: true, withRelated: relations });
+  return new _eager2.<span class="apidocCodeKeywordSpan">default</span>(this.models, this.toJSON(options), new this.model()).fetch
+(options).return(this);
+}),
+
+/**
+ * @method Collection#create
+ * @description
+ *
+ * Convenience method to create a new {@link Model model} instance within a
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.bookshelf.eager" id="apidoc.module.bookshelf.eager">module bookshelf.eager</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.eager.default" id="apidoc.element.bookshelf.eager.default">
+        function <span class="apidocSignatureSpan">bookshelf.eager.</span>default
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function EagerRelation() {
+  (0, _classCallCheck3.default)(this, EagerRelation);
+  return (0, _possibleConstructorReturn3.default)(this, (EagerRelation.__proto__ || Object.getPrototypeOf(EagerRelation)).apply(
+this, arguments));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ *
+ *  @returns {Promise&#x3c;Collection&#x3e;} A promise resolving to this {@link
+ *  Collection collection}
+ */
+load: _promise2.default.method(function (relations, options) {
+  if (!(0, _lodash.isArray)(relations)) relations = [relations];
+  options = (0, _lodash.extend)({}, options, { shallow: true, withRelated: relations });
+  return new _eager2.<span class="apidocCodeKeywordSpan">default</span>(this.models, this.toJSON(options), new this.model()).fetch
+(options).return(this);
+}),
+
+/**
+ * @method Collection#create
+ * @description
+ *
+ * Convenience method to create a new {@link Model model} instance within a
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.bookshelf.errors" id="apidoc.module.bookshelf.errors">module bookshelf.errors</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.errors.EmptyError" id="apidoc.element.bookshelf.errors.EmptyError">
+        function <span class="apidocSignatureSpan">bookshelf.errors.</span>EmptyError
+        <span class="apidocSignatureSpan">(message, obj)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function ErrorCtor(message, obj) {
+  attachProps(this, properties);
+  attachProps(this, obj);
+  this.message = (message || this.message);
+  if (message instanceof Error) {
+    this.message = message.message;
+    this.stack = message.stack;
+  } else if (Error.captureStackTrace) {
+    Error.captureStackTrace(this, this.constructor);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+   * @param {string|string[]} [options.withRelated=[]] A relation, or list of relations, to be eager loaded as part of the `fetch
+` operation.
+   * @returns {Promise&#x3c;Collection&#x3e;}
+   */
+  fetch: _promise2.default.method(function (options) {
+options = options ? (0, _lodash.clone)(options) : {};
+return this.sync(options).select().bind(this).tap(function (response) {
+  if (!response || response.length === 0) {
+    throw new this.constructor.<span class="apidocCodeKeywordSpan">EmptyError</span>(&#x27;EmptyResponse&#x27;);
+  }
+})
+
+// Now, load all of the data onto the collection as necessary.
+.tap(this._handleResponse)
+
+// If the &#x22;withRelated&#x22; is specified, we also need to eager load all of the
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.errors.NoRowsDeletedError" id="apidoc.element.bookshelf.errors.NoRowsDeletedError">
+        function <span class="apidocSignatureSpan">bookshelf.errors.</span>NoRowsDeletedError
+        <span class="apidocSignatureSpan">(message, obj)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function ErrorCtor(message, obj) {
+  attachProps(this, properties);
+  attachProps(this, obj);
+  this.message = (message || this.message);
+  if (message instanceof Error) {
+    this.message = message.message;
+    this.stack = message.stack;
+  } else if (Error.captureStackTrace) {
+    Error.captureStackTrace(this, this.constructor);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * @returns {Promise}
+ */
+return this.triggerThen(&#x27;destroying&#x27;, this, options);
+    }).then(function () {
+return sync.del();
+    }).then(function (resp) {
+if (options.require &#x26;&#x26; resp === 0) {
+  throw new this.constructor.<span class="apidocCodeKeywordSpan">NoRowsDeletedError</span>(&#x27;No Rows Deleted&#x27;);
+}
+this.clear();
+
+/**
+ * Destroyed event.
+ *
+ * Fired before a `delete` query. A promise may be returned from the event
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.errors.NoRowsUpdatedError" id="apidoc.element.bookshelf.errors.NoRowsUpdatedError">
+        function <span class="apidocSignatureSpan">bookshelf.errors.</span>NoRowsUpdatedError
+        <span class="apidocSignatureSpan">(message, obj)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function ErrorCtor(message, obj) {
+  attachProps(this, properties);
+  attachProps(this, obj);
+  this.message = (message || this.message);
+  if (message instanceof Error) {
+    this.message = message.message;
+    this.stack = message.stack;
+  } else if (Error.captureStackTrace) {
+    Error.captureStackTrace(this, this.constructor);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+if (method === &#x27;insert&#x27; &#x26;&#x26; this.id == null) {
+  var updatedCols = {};
+  updatedCols[this.idAttribute] = this.id = resp[0];
+  var updatedAttrs = this.parse(updatedCols);
+  _lodash2.default.assign(this.attributes, updatedAttrs);
+} else if (method === &#x27;update&#x27; &#x26;&#x26; resp === 0) {
+  if (options.require !== false) {
+    throw new this.constructor.<span class="apidocCodeKeywordSpan">NoRowsUpdatedError</span>(&#x27;No Rows Updated&#x27;);
+  }
+}
+
+// In case we need to reference the `previousAttributes` for the this
+// in the following event handlers.
+options.previousAttributes = this._previousAttributes;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.errors.NotFoundError" id="apidoc.element.bookshelf.errors.NotFoundError">
+        function <span class="apidocSignatureSpan">bookshelf.errors.</span>NotFoundError
+        <span class="apidocSignatureSpan">(message, obj)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function ErrorCtor(message, obj) {
+  attachProps(this, properties);
+  attachProps(this, obj);
+  this.message = (message || this.message);
+  if (message instanceof Error) {
+    this.message = message.message;
+    this.stack = message.stack;
+  } else if (Error.captureStackTrace) {
+    Error.captureStackTrace(this, this.constructor);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+// Run the `first` call on the `sync` object to fetch a single model.
+return this.sync(options).first(attributes).bind(this)
+
+// Jump the rest of the chain if the response doesn&#x27;t exist...
+.tap(function (response) {
+  if (!response || response.length === 0) {
+    throw new this.constructor.<span class="apidocCodeKeywordSpan">NotFoundError</span>(&#x27;EmptyResponse&#x27;);
+  }
+})
+
+// Now, load all of the data into the model as necessary.
+.tap(this._handleResponse)
+
+// If the &#x22;withRelated&#x22; is specified, we also need to eager load all of the
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.bookshelf.helpers" id="apidoc.module.bookshelf.helpers">module bookshelf.helpers</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.helpers.deprecate" id="apidoc.element.bookshelf.helpers.deprecate">
+        function <span class="apidocSignatureSpan">bookshelf.helpers.</span>deprecate
+        <span class="apidocSignatureSpan">(a, b)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function deprecate(a, b) {
+  helpers.warn(a + &#x27; has been deprecated, please use &#x27; + b + &#x27; instead&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.helpers.error" id="apidoc.element.bookshelf.helpers.error">
+        function <span class="apidocSignatureSpan">bookshelf.helpers.</span>error
+        <span class="apidocSignatureSpan">(msg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function error(msg) {
+  console.log(chalk.red(msg));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var Tag = bookshelf.Model.extend({
+  tableName: &#x27;tags&#x27;
+})
+
+User.where(&#x27;id&#x27;, 1).fetch({withRelated: [&#x27;posts.tags&#x27;]}).then(function(user) {
+  console.log(user.related(&#x27;posts&#x27;).toJSON());
+}).catch(function(err) {
+  console.<span class="apidocCodeKeywordSpan">error</span>(err);
+});
+```
+
+## Plugins
+
+* [Registry](https://github.com/tgriesser/bookshelf/wiki/Plugin:-Model-Registry): Register models in a central location so that
+you can refer to them using a string in relations instead of having to require it every time. Helps deal with the challenges of
+circular module dependencies in Node.
+* [Virtuals](https://github.com/tgriesser/bookshelf/wiki/Plugin:-Virtuals): Define virtual properties on your model to compute new
+ values.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.helpers.morphCandidate" id="apidoc.element.bookshelf.helpers.morphCandidate">
+        function <span class="apidocSignatureSpan">bookshelf.helpers.</span>morphCandidate
+        <span class="apidocSignatureSpan">(candidates, foreignTable)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function morphCandidate(candidates, foreignTable) {
+  var Target = _.find(candidates, function (Candidate) {
+    return _.result(Candidate.prototype, &#x27;tableName&#x27;) === foreignTable;
+  });
+  if (!Target) {
+    throw new Error(&#x27;The target polymorphic model was not found&#x27;);
+  }
+  return Target;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    _columnNames$2 = _columnNames[1],
+    idColumn = _columnNames$2 === undefined ? morphName + &#x27;_id&#x27; : _columnNames$2;
+
+var parentsByType = _lodash2.default.groupBy(this.parent, function (model) {
+  return model.get(typeColumn);
+});
+var TargetByType = _lodash2.default.mapValues(parentsByType, function (parents, type) {
+  return _helpers2.default.<span class="apidocCodeKeywordSpan">morphCandidate</span>(relatedData.candidates, type);
+});
+
+return _promise2.default.all(_lodash2.default.map(parentsByType, function (parents, type) {
+  var Target = TargetByType[type];
+  var idAttribute = _lodash2.default.result(Target.prototype, &#x27;idAttribute&#x27;);
+  var ids = getAttributeUnique(parents, idColumn);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.helpers.orderBy" id="apidoc.element.bookshelf.helpers.orderBy">
+        function <span class="apidocSignatureSpan">bookshelf.helpers.</span>orderBy
+        <span class="apidocSignatureSpan">(obj, sort, order)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function orderBy(obj, sort, order) {
+
+  var tableName = void 0;
+  var idAttribute = void 0;
+
+  if (obj.model) {
+    tableName = obj.model.prototype.tableName;
+    idAttribute = obj.model.prototype.idAttribute ? obj.model.prototype.idAttribute : &#x27;id&#x27;;
+  } else {
+    tableName = obj.constructor.prototype.tableName;
+    idAttribute = obj.constructor.prototype.idAttribute ? obj.constructor.prototype.idAttribute : &#x27;id&#x27;;
+  }
+
+  var _sort = void 0;
+
+  if (sort &#x26;&#x26; sort.indexOf(&#x27;-&#x27;) === 0) {
+    _sort = sort.slice(1);
+  } else if (sort) {
+    _sort = sort;
+  } else {
+    _sort = idAttribute;
+  }
+
+  var _order = order || (sort &#x26;&#x26; sort.indexOf(&#x27;-&#x27;) === 0 ? &#x27;DESC&#x27; : &#x27;ASC&#x27;);
+
+  if (_sort.indexOf(&#x27;.&#x27;) === -1) {
+    _sort = tableName + &#x27;.&#x27; + _sort;
+  }
+
+  return obj.query(function (qb) {
+    qb.orderBy(_sort, _order);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* name. `orderBy(&#x22;date&#x22;, &#x27;DESC&#x27;)` is the same as `orderBy(&#x22;-date&#x22;)`.
+*
+* Unless specified using dot notation (i.e., &#x22;table.column&#x22;), the default
+* table will be the table name of the model `orderBy` was called on.
+*
+* @example
+*
+* Cars.forge().<span class="apidocCodeKeywordSpan">orderBy</span>(&#x27;color&#x27;, &#x27;ASC&#x27;).fetch()
+*    .then(function (rows) { // ...
+*
+* @param sort {string}
+*   Column to sort on
+* @param order {string}
+*   Ascending (&#x27;ASC&#x27;) or descending (&#x27;DESC&#x27;) order
+*/
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.helpers.query" id="apidoc.element.bookshelf.helpers.query">
+        function <span class="apidocSignatureSpan">bookshelf.helpers.</span>query
+        <span class="apidocSignatureSpan">(obj, args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function query(obj, args) {
+
+  // Ensure the object has a query builder.
+  if (!obj._knex) {
+    var tableName = _.result(obj, &#x27;tableName&#x27;);
+    obj._knex = obj._builder(tableName);
+  }
+
+  // If there are no arguments, return the query builder.
+  if (args.length === 0) return obj._knex;
+
+  var method = args[0];
+
+  if (_.isFunction(method)) {
+
+    // `method` is a query builder callback. Call it on the query builder
+    // object.
+    method.call(obj._knex, obj._knex);
+  } else if (_.isObject(method)) {
+
+    // `method` is an object. Use keys as methods and values as arguments to
+    // the query builder.
+    for (var key in method) {
+      var target = _.isArray(method[key]) ? method[key] : [method[key]];
+      obj._knex[key].apply(obj._knex, target);
+    }
+  } else {
+
+    // Otherwise assume that the `method` is string name of a query builder
+    // method, and use the remaining args as arguments to that method.
+    obj._knex[method].apply(obj._knex, args.slice(1));
+  }
+  return obj;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* Get the number of records in the collection&#x27;s table.
+*
+* @example
+*
+* // select count(*) from shareholders where company_id = 1 and share &#x26;gt; 0.1;
+* Company.forge({id:1})
+*   .shareholders()
+*   .<span class="apidocCodeKeywordSpan">query</span>(&#x27;where&#x27;, &#x27;share&#x27;, &#x27;&#x3e;&#x27;, &#x27;0.1&#x27;)
+*   .count()
+*   .then(function(count) {
+*     assert(count === 3);
+*   });
+*
+* @param {string} [column=&#x27;*&#x27;]
+*   Specify a column to count - rows with null values in this column will be excluded.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.helpers.saveConstraints" id="apidoc.element.bookshelf.helpers.saveConstraints">
+        function <span class="apidocSignatureSpan">bookshelf.helpers.</span>saveConstraints
+        <span class="apidocSignatureSpan">(model, relatedData)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function saveConstraints(model, relatedData) {
+  var data = {};
+  if (relatedData &#x26;&#x26; !relatedData.isThrough() &#x26;&#x26; relatedData.type !== &#x27;belongsToMany&#x27; &#x26;&#x26; relatedData.type !== &#x27;belongsTo&#x27;) {
+    data[relatedData.key(&#x27;foreignKey&#x27;)] = relatedData.parentFk || model.get(relatedData.key(&#x27;foreignKey&#x27;));
+    if (relatedData.isMorph()) data[relatedData.key(&#x27;morphKey&#x27;)] = relatedData.key(&#x27;morphValue&#x27;);
+  }
+  return model.set(model.parse(data));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+  // If we&#x27;ve already added things on the query chain,
+  // these are likely intended for the model.
+  if (this._knex) {
+    model._knex = this._knex;
+    this.resetQuery();
+  }
+  return _helpers2.default.<span class="apidocCodeKeywordSpan">saveConstraints</span>(model, relatedData).save(null, options).bind
+(this).then(function () {
+    if (relatedData &#x26;&#x26; relatedData.type === &#x27;belongsToMany&#x27;) {
+      return this.attach(model, (0, _lodash.omit)(options, &#x27;query&#x27;));
+    }
+  }).then(function () {
+    this.add(model, options);
+  }).return(model);
+}),
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.helpers.warn" id="apidoc.element.bookshelf.helpers.warn">
+        function <span class="apidocSignatureSpan">bookshelf.helpers.</span>warn
+        <span class="apidocSignatureSpan">(msg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function warn(msg) {
+  console.log(chalk.yellow(msg));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  },
+
+  warn: function warn(msg) {
+console.log(chalk.yellow(msg));
+  },
+
+  deprecate: function deprecate(a, b) {
+helpers.<span class="apidocCodeKeywordSpan">warn</span>(a + &#x27; has been deprecated, please use &#x27; + b + &#x27; instead&#
+x27;);
+  },
+
+  orderBy: function orderBy(obj, sort, order) {
+
+var tableName = void 0;
+var idAttribute = void 0;
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.bookshelf.model" id="apidoc.module.bookshelf.model">module bookshelf.model</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.model" id="apidoc.element.bookshelf.model.model">
+        function <span class="apidocSignatureSpan">bookshelf.</span>model
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">model = function () {
+  return Parent.apply(this, arguments);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ *  Optionally run the query in a transaction.
+ *
+ * @throws {Model.NotFoundError}
+ * @returns {Promise&#x3c;Model|null&#x3e;}
+ *  A promise resolving to the fetched {@link Model model} or `null` if none exists.
+ */
+fetchOne: _promise2.default.method(function (options) {
+  var model = new this.<span class="apidocCodeKeywordSpan">model</span>();
+  model._knex = this.query().clone();
+  this.resetQuery();
+  if (this.relatedData) model.relatedData = this.relatedData;
+  return model.fetch(options);
+}),
+
+/**
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.NoRowsDeletedError" id="apidoc.element.bookshelf.model.NoRowsDeletedError">
+        function <span class="apidocSignatureSpan">bookshelf.model.</span>NoRowsDeletedError
+        <span class="apidocSignatureSpan">(message, obj)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function ErrorCtor(message, obj) {
+  attachProps(this, properties);
+  attachProps(this, obj);
+  this.message = (message || this.message);
+  if (message instanceof Error) {
+    this.message = message.message;
+    this.stack = message.stack;
+  } else if (Error.captureStackTrace) {
+    Error.captureStackTrace(this, this.constructor);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * @returns {Promise}
+ */
+return this.triggerThen(&#x27;destroying&#x27;, this, options);
+    }).then(function () {
+return sync.del();
+    }).then(function (resp) {
+if (options.require &#x26;&#x26; resp === 0) {
+  throw new this.constructor.<span class="apidocCodeKeywordSpan">NoRowsDeletedError</span>(&#x27;No Rows Deleted&#x27;);
+}
+this.clear();
+
+/**
+ * Destroyed event.
+ *
+ * Fired before a `delete` query. A promise may be returned from the event
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.NoRowsUpdatedError" id="apidoc.element.bookshelf.model.NoRowsUpdatedError">
+        function <span class="apidocSignatureSpan">bookshelf.model.</span>NoRowsUpdatedError
+        <span class="apidocSignatureSpan">(message, obj)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function ErrorCtor(message, obj) {
+  attachProps(this, properties);
+  attachProps(this, obj);
+  this.message = (message || this.message);
+  if (message instanceof Error) {
+    this.message = message.message;
+    this.stack = message.stack;
+  } else if (Error.captureStackTrace) {
+    Error.captureStackTrace(this, this.constructor);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+if (method === &#x27;insert&#x27; &#x26;&#x26; this.id == null) {
+  var updatedCols = {};
+  updatedCols[this.idAttribute] = this.id = resp[0];
+  var updatedAttrs = this.parse(updatedCols);
+  _lodash2.default.assign(this.attributes, updatedAttrs);
+} else if (method === &#x27;update&#x27; &#x26;&#x26; resp === 0) {
+  if (options.require !== false) {
+    throw new this.constructor.<span class="apidocCodeKeywordSpan">NoRowsUpdatedError</span>(&#x27;No Rows Updated&#x27;);
+  }
+}
+
+// In case we need to reference the `previousAttributes` for the this
+// in the following event handlers.
+options.previousAttributes = this._previousAttributes;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.NotFoundError" id="apidoc.element.bookshelf.model.NotFoundError">
+        function <span class="apidocSignatureSpan">bookshelf.model.</span>NotFoundError
+        <span class="apidocSignatureSpan">(message, obj)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function ErrorCtor(message, obj) {
+  attachProps(this, properties);
+  attachProps(this, obj);
+  this.message = (message || this.message);
+  if (message instanceof Error) {
+    this.message = message.message;
+    this.stack = message.stack;
+  } else if (Error.captureStackTrace) {
+    Error.captureStackTrace(this, this.constructor);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+// Run the `first` call on the `sync` object to fetch a single model.
+return this.sync(options).first(attributes).bind(this)
+
+// Jump the rest of the chain if the response doesn&#x27;t exist...
+.tap(function (response) {
+  if (!response || response.length === 0) {
+    throw new this.constructor.<span class="apidocCodeKeywordSpan">NotFoundError</span>(&#x27;EmptyResponse&#x27;);
+  }
+})
+
+// Now, load all of the data into the model as necessary.
+.tap(this._handleResponse)
+
+// If the &#x22;withRelated&#x22; is specified, we also need to eager load all of the
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.extend" id="apidoc.element.bookshelf.model.extend">
+        function <span class="apidocSignatureSpan">bookshelf.model.</span>extend
+        <span class="apidocSignatureSpan">(protoProps, staticProps)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function extend(protoProps, staticProps) {
+  var Parent = this;
+
+  // The constructor function for the new subclass is either defined by you
+  // (the &#x22;constructor&#x22; property in your `extend` definition), or defaulted
+  // by us to simply call the parent&#x27;s constructor.
+  var Child = protoProps &#x26;&#x26; protoProps.hasOwnProperty(&#x27;constructor&#x27;) ? protoProps.constructor : function () {
+    return Parent.apply(this, arguments);
+  };
+
+  (0, _lodash.assign)(Child, Parent, staticProps);
+
+  // Set the prototype chain to inherit from `Parent`.
+  Child.prototype = Object.create(Parent.prototype, {
+    constructor: {
+      value: Child,
+      enumerable: false,
+      writable: true,
+      configurable: true
+    }
+  });
+
+  if (protoProps) {
+    (0, _lodash.assign)(Child.prototype, protoProps);
+  }
+
+  // Give child access to the parent prototype as part of &#x22;super&#x22;
+  Child.__super__ = Parent.prototype;
+
+  // If there is an &#x22;extended&#x22; function set on the parent,
+  // call it with the extended child object.
+  if ((0, _lodash.isFunction)(Parent.extended)) Parent.extended(Child);
+
+  return Child;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    database : &#x27;myapp_test&#x27;,
+    charset  : &#x27;utf8&#x27;
+  }
+});
+
+var bookshelf = require(&#x27;bookshelf&#x27;)(knex);
+
+var User = bookshelf.Model.<span class="apidocCodeKeywordSpan">extend</span>({
+  tableName: &#x27;users&#x27;
+});
+```
+
+This initialization should likely only ever happen once in your application. As it creates a connection pool for the current database
+, you should use the `bookshelf` instance returned throughout your library. You&#x27;ll need to store this instance created by the
+ initialize somewhere in the application so you can reference it. A common pattern to follow is to initialize the client in a module
+ so you can easily reference it later:
+
+```js
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.extended" id="apidoc.element.bookshelf.model.extended">
+        function <span class="apidocSignatureSpan">bookshelf.model.</span>extended
+        <span class="apidocSignatureSpan">(child)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function extended(child) {
+<span class="apidocCodeCommentSpan">  /**
+   * @class Model.NotFoundError
+   * @description
+   *
+   *   Thrown when no records are found by {@link Model#fetch fetch} or
+   *   {@link Model#refresh} when called with the
+   *   `{require: true}` option.
+   */
+</span>  child.NotFoundError = (0, _createError2.default)(this.NotFoundError);
+
+  /**
+   * @class Model.NoRowsUpdatedError
+   * @description
+   *
+   *   Thrown when no records are saved by {@link Model#save save}
+   *   unless called with the `{require: false}` option.
+   */
+  child.NoRowsUpdatedError = (0, _createError2.default)(this.NoRowsUpdatedError);
+
+  /**
+   * @class Model.NoRowsDeletedError
+   * @description
+   *
+   *   Thrown when no record is deleted by {@link Model#destroy destroy}
+   *   if called with the `{require: true}` option.
+   */
+  child.NoRowsDeletedError = (0, _createError2.default)(this.NoRowsDeletedError);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  }
+
+  // Give child access to the parent prototype as part of &#x22;super&#x22;
+  Child.__super__ = Parent.prototype;
+
+  // If there is an &#x22;extended&#x22; function set on the parent,
+  // call it with the extended child object.
+  if ((0, _lodash.isFunction)(Parent.extended)) Parent.<span class="apidocCodeKeywordSpan">extended</span>(Child);
+
+  return Child;
+};
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.super_" id="apidoc.element.bookshelf.model.super_">
+        function <span class="apidocSignatureSpan">bookshelf.model.</span>super_
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Events() {
+  (0, _classCallCheck3.default)(this, Events);
+  return (0, _possibleConstructorReturn3.default)(this, (Events.__proto__ || Object.getPrototypeOf(Events)).apply(this, arguments
+));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.bookshelf.model.prototype" id="apidoc.module.bookshelf.model.prototype">module bookshelf.model.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype._doFetch" id="apidoc.element.bookshelf.model.prototype._doFetch">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>_doFetch
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_doFetch = function () {
+    var ret = new Promise(INTERNAL);
+    ret._captureStackTrace();
+    ret._pushContext();
+    var value = tryCatch(fn).apply(this, arguments);
+    var promiseCreated = ret._popContext();
+    debug.checkForgottenReturns(
+        value, promiseCreated, &#x22;Promise.method&#x22;, ret);
+    ret._resolveFromSyncValue(value);
+    return ret;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ */
+refresh: function refresh(options) {
+
+  // If this is new, we use all its attributes. Otherwise we just grab the
+  // primary key.
+  var attributes = this.isNew() ? this.attributes : _lodash2.default.pick(this.attributes, this.idAttribute);
+
+  return this.<span class="apidocCodeKeywordSpan">_doFetch</span>(attributes, options);
+},
+
+
+/**
+ * Fetches a {@link Model model} from the database, using any {@link
+ * Model#attributes attributes} currently set on the model to form a `select`
+ * query.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype._handleEager" id="apidoc.element.bookshelf.model.prototype._handleEager">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>_handleEager
+        <span class="apidocSignatureSpan">(response, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function _handleEager(response, options) {
+  return new _eager2.default([this], response, this).fetch(options);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+    // If the &#x22;withRelated&#x22; is specified, we also need to eager load all of the
+    // data on the collection, as a side-effect, before we ultimately jump into the
+    // next step of the collection. Since the `columns` are only relevant to the current
+    // level, ensure those are omitted from the options.
+    .tap(function (response) {
+if (options.withRelated) {
+  return this.<span class="apidocCodeKeywordSpan">_handleEager</span>(response, (0, _lodash.omit)(options, &#x27;columns&#x27;));
+}
+    }).tap(function (response) {
+
+/**
+ * @event Collection#fetched
+ *
+ * @description
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype._handleResponse" id="apidoc.element.bookshelf.model.prototype._handleResponse">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>_handleResponse
+        <span class="apidocSignatureSpan">(response)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function _handleResponse(response) {
+  var relatedData = this.relatedData;
+  this.set(this.parse(response[0]), { silent: true })._reset();
+  if (relatedData &#x26;&#x26; relatedData.isJoined()) {
+    relatedData.parsePivot([this]);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype._morphOneOrMany" id="apidoc.element.bookshelf.model.prototype._morphOneOrMany">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>_morphOneOrMany
+        <span class="apidocSignatureSpan">(Target, morphName, columnNames, morphValue, type)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function _morphOneOrMany(Target, morphName, columnNames, morphValue, type) {
+  if (!_lodash2.default.isArray(columnNames)) {
+    // Shift by one place
+    morphValue = columnNames;
+    columnNames = null;
+  }
+  if (!morphName || !Target) throw new Error(&#x27;The polymorphic `name` and `Target` are required.&#x27;);
+  return this._relation(type, Target, { morphName: morphName, morphValue: morphValue, columnNames: columnNames }).init(this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ *   The string value associated with this relationship. Stored in the `_type`
+ *   column of the polymorphic table. Defaults to `Target#{@link
+ *   Model#tableName tableName}`.
+ *
+ * @returns {Model} The related model.
+ */
+morphOne: function morphOne(Target, name, columnNames, morphValue) {
+  return this.<span class="apidocCodeKeywordSpan">_morphOneOrMany</span>(Target, name, columnNames, morphValue, &#x27;morphOne&#
+x27;);
+},
+
+
+/**
+ * {@link Model#morphMany morphMany} is essentially the same as a {@link
+ * Model#morphOne morphOne}, but creating a {@link Collection collection}
+ * rather than a {@link Model model} (similar to a {@link Model#hasOne
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype.all" id="apidoc.element.bookshelf.model.prototype.all">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>all
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function all() {
+  var collection = this.constructor.collection();
+  collection._knex = this.query().clone();
+  this.resetQuery();
+  if (this.relatedData) collection.relatedData = this.relatedData;
+  return collection;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+      var parentsByType = _lodash2.default.groupBy(this.parent, function (model) {
+return model.get(typeColumn);
+      });
+      var TargetByType = _lodash2.default.mapValues(parentsByType, function (parents, type) {
+return _helpers2.default.morphCandidate(relatedData.candidates, type);
+      });
+
+      return _promise2.default.<span class="apidocCodeKeywordSpan">all</span>(_lodash2.default.map(parentsByType, function (parents
+, type) {
+var Target = TargetByType[type];
+var idAttribute = _lodash2.default.result(Target.prototype, &#x27;idAttribute&#x27;);
+var ids = getAttributeUnique(parents, idColumn);
+
+return Target.query(&#x27;whereIn&#x27;, idAttribute, ids).sync(options).select().tap(function (response) {
+  var clone = relatedData.instance(&#x27;morphTo&#x27;, Target, { morphName: morphName, columnNames: columnNames });
+  return _this3._eagerLoadHelper(response, relationName, { relatedData: clone }, options);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype.belongsTo" id="apidoc.element.bookshelf.model.prototype.belongsTo">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>belongsTo
+        <span class="apidocSignatureSpan">(Target, foreignKey, foreignKeyTarget)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function belongsTo(Target, foreignKey, foreignKeyTarget) {
+  return this._relation(&#x27;belongsTo&#x27;, Target, { foreignKey: foreignKey, foreignKeyTarget: foreignKeyTarget }).init(this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* Model#belongsTo belongsTo} relationship is used for a model that is a
+* member of another Target model, referenced by the foreignKey in the current
+* model.
+*
+*     let Book = bookshelf.Model.extend({
+*       tableName: &#x27;books&#x27;,
+*       author: function() {
+*         return this.<span class="apidocCodeKeywordSpan">belongsTo</span>(Author);
+*       }
+*     });
+*
+*     // select * from `books` where id = 1
+*     // select * from `authors` where id = book.author_id
+*     Book.where({id: 1}).fetch({withRelated: [&#x27;author&#x27;]}).then(function(book) {
+*       console.log(JSON.stringify(book.related(&#x27;author&#x27;)));
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype.belongsToMany" id="apidoc.element.bookshelf.model.prototype.belongsToMany">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>belongsToMany
+        <span class="apidocSignatureSpan">(Target, joinTableName, foreignKey, otherKey, foreignKeyTarget, otherKeyTarget)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function belongsToMany(Target, joinTableName, foreignKey, otherKey, foreignKeyTarget, otherKeyTarget) {
+  return this._relation(&#x27;belongsToMany&#x27;, Target, {
+    joinTableName: joinTableName, foreignKey: foreignKey, otherKey: otherKey, foreignKeyTarget: foreignKeyTarget, otherKeyTarget
+: otherKeyTarget
+  }).init(this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    return this.hasMany(Posts);
+  }
+});
+
+var Posts = bookshelf.Model.extend({
+  tableName: &#x27;messages&#x27;,
+  tags: function() {
+    return this.<span class="apidocCodeKeywordSpan">belongsToMany</span>(Tag);
+  }
+});
+
+var Tag = bookshelf.Model.extend({
+  tableName: &#x27;tags&#x27;
+})
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype.clone" id="apidoc.element.bookshelf.model.prototype.clone">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>clone
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function clone() {
+  // This needs to use the direct apply method because the spread operator
+  // incorrectly converts to `clone.apply(ModelBase.prototype, arguments)`
+  // instead of `apply(this, arguments)`
+  var cloned = BookshelfModel.__super__.clone.apply(this, arguments);
+  if (this._knex != null) {
+    cloned._knex = cloned._builder(this._knex.clone());
+  }
+  return cloned;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ *
+ * @throws {Model.NotFoundError}
+ * @returns {Promise&#x3c;Model|null&#x3e;}
+ *  A promise resolving to the fetched {@link Model model} or `null` if none exists.
+ */
+fetchOne: _promise2.default.method(function (options) {
+  var model = new this.model();
+  model._knex = this.query().<span class="apidocCodeKeywordSpan">clone</span>();
+  this.resetQuery();
+  if (this.relatedData) model.relatedData = this.relatedData;
+  return model.fetch(options);
+}),
+
+/**
+ * @method Collection#load
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype.count" id="apidoc.element.bookshelf.model.prototype.count">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>count
+        <span class="apidocSignatureSpan">(column, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function count(column, options) {
+  return this.all().count(column, options);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+*
+* @example
+*
+* // select count(*) from shareholders where company_id = 1 and share &#x26;gt; 0.1;
+* Company.forge({id:1})
+*   .shareholders()
+*   .query(&#x27;where&#x27;, &#x27;share&#x27;, &#x27;&#x3e;&#x27;, &#x27;0.1&#x27;)
+*   .<span class="apidocCodeKeywordSpan">count</span>()
+*   .then(function(count) {
+*     assert(count === 3);
+*   });
+*
+* @param {string} [column=&#x27;*&#x27;]
+*   Specify a column to count - rows with null values in this column will be excluded.
+* @param {Object=} options
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype.destroy" id="apidoc.element.bookshelf.model.prototype.destroy">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>destroy
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">destroy = function () {
+    var ret = new Promise(INTERNAL);
+    ret._captureStackTrace();
+    ret._pushContext();
+    var value = tryCatch(fn).apply(this, arguments);
+    var promiseCreated = ret._popContext();
+    debug.checkForgottenReturns(
+        value, promiseCreated, &#x22;Promise.method&#x22;, ret);
+    ret._resolveFromSyncValue(value);
+    return ret;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+Make sure you check that the type is correct for the initial parameters passed to the initial model being fetched. For example `
+new Model({id: &#x27;1&#x27;}).load([relations...])` will not return the same as `Model({id: 1}).load([relations...])` - notice
+that the id is a string in one case and a number in the other. This can be a common mistake if retrieving the id from a url parameter
+.
+
+This is only an issue if you&#x27;re eager loading data with load without first fetching the original model. `Model({id: &#x27;1
+&#x27;}).fetch({withRelated: [relations...]})` should work just fine.
+
+### My process won&#x27;t exit after my script is finished, why?
+
+The issue here is that Knex, the database abstraction layer used by Bookshelf, uses connection pooling and thus keeps the database
+ connection open. If you want your process to exit after your script has finished, you will have to call `.<span class="apidocCodeKeywordSpan
+">destroy</span>(cb)` on the `knex` property of your `Bookshelf` instance or on the `Knex` instance passed during initialization
+. More information about connection pooling can be found over at the [Knex docs](http://knexjs.org/#Installation-pooling).
+
+### How do I debug?
+
+If you pass `{debug: true}` as one of the options in your initialize settings, you can see all of the query calls being made. Sometimes
+ you need to dive a bit further into the various calls and see what all is going on behind the scenes. I&#x27;d recommend [node-
+inspector](https://github.com/dannycoates/node-inspector), which allows you to debug code with `debugger` statements like you would
+ in the browser.
+
+Bookshelf uses its own copy of the &#x22;bluebird&#x22; promise library, you can read up here for more on debugging these promises
+... but in short, adding:
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype.fetch" id="apidoc.element.bookshelf.model.prototype.fetch">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>fetch
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function fetch(options) {
+
+  // Fetch uses all set attributes.
+  return this._doFetch(this.attributes, options);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  }
+});
+
+var Tag = bookshelf.Model.extend({
+  tableName: &#x27;tags&#x27;
+})
+
+User.where(&#x27;id&#x27;, 1).<span class="apidocCodeKeywordSpan">fetch</span>({withRelated: [&#x27;posts.tags&#x27;]}).then(function
+(user) {
+  console.log(user.related(&#x27;posts&#x27;).toJSON());
+}).catch(function(err) {
+  console.error(err);
+});
+```
+
+## Plugins
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype.fetchAll" id="apidoc.element.bookshelf.model.prototype.fetchAll">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>fetchAll
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function fetchAll(options) {
+  var _this = this;
+
+  var collection = this.all();
+  return collection.once(&#x27;fetching&#x27;, function (__, columns, opts) {
+<span class="apidocCodeCommentSpan">    /**
+     * Fired before a {@link Model#fetchAll fetchAll} operation. A promise
+     * may be returned from the event handler for async behaviour.
+     *
+     * @event Model#&#x22;fetching:collection&#x22;
+     * @param {Model}    collection The collection that has been fetched.
+     * @param {string[]} columns    The columns being retrieved by the query.
+     * @param {Object}   options    Options object passed to {@link Model#fetchAll fetchAll}.
+     * @returns {Promise}
+     */
+</span>    return _this.triggerThen(&#x27;fetching:collection&#x27;, collection, columns, opts);
+  }).once(&#x27;fetched&#x27;, function (__, resp, opts) {
+    /**
+     * Fired after a {@link Model#fetchAll fetchAll} operation. A promise
+     * may be returned from the event handler for async behaviour.
+     *
+     * @event Model#&#x22;fetched:collection&#x22;
+     * @param {Model}  collection The collection that has been fetched.
+     * @param {Object} resp       The Knex query response.
+     * @param {Object} options    Options object passed to {@link Model#fetchAll fetchAll}.
+     * @returns {Promise}
+     */
+    return _this.triggerThen(&#x27;fetched:collection&#x27;, collection, resp, opts);
+  }).fetch(options);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* name. `orderBy(&#x22;date&#x22;, &#x27;DESC&#x27;)` is the same as `orderBy(&#x22;-date&#x22;)`.
+*
+* Unless specified using dot notation (i.e., &#x22;table.column&#x22;), the default
+* table will be the table name of the model `orderBy` was called on.
+*
+* @example
+*
+* Car.forge().orderBy(&#x27;color&#x27;, &#x27;ASC&#x27;).<span class="apidocCodeKeywordSpan">fetchAll</span>()
+*    .then(function (rows) { // ...
+*
+* @param sort {string}
+*   Column to sort on
+* @param order {string}
+*   Ascending (&#x27;ASC&#x27;) or descending (&#x27;DESC&#x27;) order
+*/
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype.hasMany" id="apidoc.element.bookshelf.model.prototype.hasMany">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>hasMany
+        <span class="apidocSignatureSpan">(Target, foreignKey, foreignKeyTarget)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function hasMany(Target, foreignKey, foreignKeyTarget) {
+  return this._relation(&#x27;hasMany&#x27;, Target, { foreignKey: foreignKey, foreignKeyTarget: foreignKeyTarget }).init(this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+```js
+var knex = require(&#x27;knex&#x27;)({client: &#x27;mysql&#x27;, connection: process.env.MYSQL_DATABASE_CONNECTION });
+var bookshelf = require(&#x27;bookshelf&#x27;)(knex);
+
+var User = bookshelf.Model.extend({
+tableName: &#x27;users&#x27;,
+posts: function() {
+  return this.<span class="apidocCodeKeywordSpan">hasMany</span>(Posts);
+}
+});
+
+var Posts = bookshelf.Model.extend({
+tableName: &#x27;messages&#x27;,
+tags: function() {
+  return this.belongsToMany(Tag);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype.hasOne" id="apidoc.element.bookshelf.model.prototype.hasOne">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>hasOne
+        <span class="apidocSignatureSpan">(Target, foreignKey, foreignKeyTarget)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function hasOne(Target, foreignKey, foreignKeyTarget) {
+  return this._relation(&#x27;hasOne&#x27;, Target, { foreignKey: foreignKey, foreignKeyTarget: foreignKeyTarget }).init(this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+*     let Record = bookshelf.Model.extend({
+*       tableName: &#x27;health_records&#x27;
+*     });
+*
+*     let Patient = bookshelf.Model.extend({
+*       tableName: &#x27;patients&#x27;,
+*       record: function() {
+*         return this.<span class="apidocCodeKeywordSpan">hasOne</span>(Record);
+*       }
+*     });
+*
+*     // select * from `health_records` where `patient_id` = 1;
+*     new Patient({id: 1}).related(&#x27;record&#x27;).fetch().then(function(model) {
+*       // ...
+*     });
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype.load" id="apidoc.element.bookshelf.model.prototype.load">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>load
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">load = function () {
+    var ret = new Promise(INTERNAL);
+    ret._captureStackTrace();
+    ret._pushContext();
+    var value = tryCatch(fn).apply(this, arguments);
+    var promiseCreated = ret._popContext();
+    debug.checkForgottenReturns(
+        value, promiseCreated, &#x22;Promise.method&#x22;, ret);
+    ret._resolveFromSyncValue(value);
+    return ret;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+### Can I use standard node.js style callbacks?
+
+Yes - you can call `.asCallback(function(err, resp) {` on any &#x22;sync&#x22; method and use the standard `(err, result)` style
+ callback interface if you prefer.
+
+### My relations don&#x27;t seem to be loading, what&#x27;s up?
+
+Make sure you check that the type is correct for the initial parameters passed to the initial model being fetched. For example `
+new Model({id: &#x27;1&#x27;}).<span class="apidocCodeKeywordSpan">load</span>([relations...])` will not return the same as `Model
+({id: 1}).load([relations...])` - notice that the id is a string in one case and a number in the other. This can be a common mistake
+ if retrieving the id from a url parameter.
+
+This is only an issue if you&#x27;re eager loading data with load without first fetching the original model. `Model({id: &#x27;1
+&#x27;}).fetch({withRelated: [relations...]})` should work just fine.
+
+### My process won&#x27;t exit after my script is finished, why?
+
+The issue here is that Knex, the database abstraction layer used by Bookshelf, uses connection pooling and thus keeps the database
+ connection open. If you want your process to exit after your script has finished, you will have to call `.destroy(cb)` on the `
+knex` property of your `Bookshelf` instance or on the `Knex` instance passed during initialization. More information about connection
+ pooling can be found over at the [Knex docs](http://knexjs.org/#Installation-pooling).
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype.morphMany" id="apidoc.element.bookshelf.model.prototype.morphMany">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>morphMany
+        <span class="apidocSignatureSpan">(Target, name, columnNames, morphValue)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function morphMany(Target, name, columnNames, morphValue) {
+  return this._morphOneOrMany(Target, name, columnNames, morphValue, &#x27;morphMany&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* and `imageable_id`. The `morphValue` may be optionally set to
+* store/retrieve a different value in the `_type` column than the `Target`&#x27;s
+* {@link Model#tableName tableName}.
+*
+*     let Post = bookshelf.Model.extend({
+*       tableName: &#x27;posts&#x27;,
+*       photos: function() {
+*         return this.<span class="apidocCodeKeywordSpan">morphMany</span>(Photo, &#x27;imageable&#x27;);
+*       }
+*     });
+*
+* And with custom columnNames:
+*
+*     let Post = bookshelf.Model.extend({
+*       tableName: &#x27;posts&#x27;,
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype.morphOne" id="apidoc.element.bookshelf.model.prototype.morphOne">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>morphOne
+        <span class="apidocSignatureSpan">(Target, name, columnNames, morphValue)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function morphOne(Target, name, columnNames, morphValue) {
+  return this._morphOneOrMany(Target, name, columnNames, morphValue, &#x27;morphOne&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* below the table names would be `imageable_type` and `imageable_id`. The
+* `morphValue` may be optionally set to store/retrieve a different value in
+* the `_type` column than the {@link Model#tableName}.
+*
+*     let Site = bookshelf.Model.extend({
+*       tableName: &#x27;sites&#x27;,
+*       photo: function() {
+*         return this.<span class="apidocCodeKeywordSpan">morphOne</span>(Photo, &#x27;imageable&#x27;);
+*       }
+*     });
+*
+* And with custom `columnNames`:
+*
+*     let Site = bookshelf.Model.extend({
+*       tableName: &#x27;sites&#x27;,
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype.morphTo" id="apidoc.element.bookshelf.model.prototype.morphTo">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>morphTo
+        <span class="apidocSignatureSpan">(morphName)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function morphTo(morphName) {
+  if (!_lodash2.default.isString(morphName)) throw new Error(&#x27;The `morphTo` name must be specified.&#x27;);
+  var columnNames = void 0,
+      candidates = void 0;
+  if (_lodash2.default.isArray(arguments[1])) {
+    columnNames = arguments[1];
+    candidates = _lodash2.default.drop(arguments, 2);
+  } else {
+    columnNames = null;
+    candidates = _lodash2.default.drop(arguments);
+  }
+  return this._relation(&#x27;morphTo&#x27;, null, { morphName: morphName, columnNames: columnNames, candidates: candidates }).init(this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* morphMany} relations, where the `targets` must be passed to signify which
+* {@link Model models} are the potential opposite end of the {@link
+* polymorphicRelation polymorphic relation}.
+*
+*     let Photo = bookshelf.Model.extend({
+*       tableName: &#x27;photos&#x27;,
+*       imageable: function() {
+*         return this.<span class="apidocCodeKeywordSpan">morphTo</span>(&#x27;imageable&#x27;, Site, Post);
+*       }
+*     });
+*
+* And with custom columnNames:
+*
+*     let Photo = bookshelf.Model.extend({
+*       tableName: &#x27;photos&#x27;,
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype.orderBy" id="apidoc.element.bookshelf.model.prototype.orderBy">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>orderBy
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function orderBy() {
+  for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 &#x3c; _len2; _key2++) {
+    args[_key2] = arguments[_key2];
+  }
+
+  return _helpers2.default.orderBy.apply(_helpers2.default, [this].concat(args));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* name. `orderBy(&#x22;date&#x22;, &#x27;DESC&#x27;)` is the same as `orderBy(&#x22;-date&#x22;)`.
+*
+* Unless specified using dot notation (i.e., &#x22;table.column&#x22;), the default
+* table will be the table name of the model `orderBy` was called on.
+*
+* @example
+*
+* Cars.forge().<span class="apidocCodeKeywordSpan">orderBy</span>(&#x27;color&#x27;, &#x27;ASC&#x27;).fetch()
+*    .then(function (rows) { // ...
+*
+* @param sort {string}
+*   Column to sort on
+* @param order {string}
+*   Ascending (&#x27;ASC&#x27;) or descending (&#x27;DESC&#x27;) order
+*/
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype.query" id="apidoc.element.bookshelf.model.prototype.query">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>query
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function query() {
+  return _helpers2.default.query(this, _lodash2.default.toArray(arguments));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* Get the number of records in the collection&#x27;s table.
+*
+* @example
+*
+* // select count(*) from shareholders where company_id = 1 and share &#x26;gt; 0.1;
+* Company.forge({id:1})
+*   .shareholders()
+*   .<span class="apidocCodeKeywordSpan">query</span>(&#x27;where&#x27;, &#x27;share&#x27;, &#x27;&#x3e;&#x27;, &#x27;0.1&#x27;)
+*   .count()
+*   .then(function(count) {
+*     assert(count === 3);
+*   });
+*
+* @param {string} [column=&#x27;*&#x27;]
+*   Specify a column to count - rows with null values in this column will be excluded.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype.refresh" id="apidoc.element.bookshelf.model.prototype.refresh">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>refresh
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function refresh(options) {
+
+  // If this is new, we use all its attributes. Otherwise we just grab the
+  // primary key.
+  var attributes = this.isNew() ? this.attributes : _lodash2.default.pick(this.attributes, this.idAttribute);
+
+  return this._doFetch(attributes, options);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype.resetQuery" id="apidoc.element.bookshelf.model.prototype.resetQuery">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>resetQuery
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function resetQuery() {
+  this._knex = null;
+  return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * @throws {Model.NotFoundError}
+ * @returns {Promise&#x3c;Model|null&#x3e;}
+ *  A promise resolving to the fetched {@link Model model} or `null` if none exists.
+ */
+fetchOne: _promise2.default.method(function (options) {
+  var model = new this.model();
+  model._knex = this.query().clone();
+  this.<span class="apidocCodeKeywordSpan">resetQuery</span>();
+  if (this.relatedData) model.relatedData = this.relatedData;
+  return model.fetch(options);
+}),
+
+/**
+ * @method Collection#load
+ * @description
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype.save" id="apidoc.element.bookshelf.model.prototype.save">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>save
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">save = function () {
+    var ret = new Promise(INTERNAL);
+    ret._captureStackTrace();
+    ret._pushContext();
+    var value = tryCatch(fn).apply(this, arguments);
+    var promiseCreated = ret._popContext();
+    debug.checkForgottenReturns(
+        value, promiseCreated, &#x22;Promise.method&#x22;, ret);
+    ret._resolveFromSyncValue(value);
+    return ret;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+*
+* When used on a relation, `create` will automatically set foreign key
+* attributes before persisting the `Model`.
+*
+* ```
+* const { courses, ...attributes } = req.body;
+*
+* Student.forge(attributes).<span class="apidocCodeKeywordSpan">save</span>().tap(student =&#x3e;
+*   Promise.map(courses, course =&#x3e; student.related(&#x27;courses&#x27;).create(course))
+* ).then(student =&#x3e;
+*   res.status(200).send(student)
+* ).catch(error =&#x3e;
+*   res.status(500).send(error.message)
+* );
+* ```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype.sync" id="apidoc.element.bookshelf.model.prototype.sync">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>sync
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function sync(options) {
+  return new _sync2.default(this, options);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+   * @param {Object=} options
+   * @param {bool} [options.require=false] Trigger a {@link Collection.EmptyError} if no records are found.
+   * @param {string|string[]} [options.withRelated=[]] A relation, or list of relations, to be eager loaded as part of the `fetch
+` operation.
+   * @returns {Promise&#x3c;Collection&#x3e;}
+   */
+  fetch: _promise2.default.method(function (options) {
+options = options ? (0, _lodash.clone)(options) : {};
+return this.<span class="apidocCodeKeywordSpan">sync</span>(options).select().bind(this).tap(function (response) {
+  if (!response || response.length === 0) {
+    throw new this.constructor.EmptyError(&#x27;EmptyResponse&#x27;);
+  }
+})
+
+// Now, load all of the data onto the collection as necessary.
+.tap(this._handleResponse)
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype.through" id="apidoc.element.bookshelf.model.prototype.through">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>through
+        <span class="apidocSignatureSpan">(Interim, throughForeignKey, otherKey, throughForeignKeyTarget, otherKeyTarget)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function through(Interim, throughForeignKey, otherKey, throughForeignKeyTarget, otherKeyTarget) {
+  return this.relatedData.through(this, Interim, {
+    throughForeignKey: throughForeignKey, otherKey: otherKey, throughForeignKeyTarget: throughForeignKeyTarget, otherKeyTarget:
+otherKeyTarget
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ *
+ *   Column in this collection model which `otherKey` references, if other
+ *   than `id` / `{@link Model#idAttribute idAttribute}`.
+ *
+ * @returns {Collection}
+ */
+through: function through(Interim, throughForeignKey, otherKey, throughForeignKeyTarget, otherKeyTarget) {
+  return this.relatedData.<span class="apidocCodeKeywordSpan">through</span>(this, Interim, {
+    throughForeignKey: throughForeignKey, otherKey: otherKey, throughForeignKeyTarget: throughForeignKeyTarget, otherKeyTarget:
+otherKeyTarget
+  });
+},
+
+/**
+ * @method Collection#fetch
+ * @description
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.model.prototype.where" id="apidoc.element.bookshelf.model.prototype.where">
+        function <span class="apidocSignatureSpan">bookshelf.model.prototype.</span>where
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function where() {
+  for (var _len = arguments.length, args = Array(_len), _key = 0; _key &#x3c; _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+
+  return this.query.apply(this, [&#x27;where&#x27;].concat(args));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  }
+});
+
+var Tag = bookshelf.Model.extend({
+  tableName: &#x27;tags&#x27;
+})
+
+User.<span class="apidocCodeKeywordSpan">where</span>(&#x27;id&#x27;, 1).fetch({withRelated: [&#x27;posts.tags&#x27;]}).then(function
+(user) {
+  console.log(user.related(&#x27;posts&#x27;).toJSON());
+}).catch(function(err) {
+  console.error(err);
+});
+```
+
+## Plugins
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.bookshelf.relation" id="apidoc.module.bookshelf.relation">module bookshelf.relation</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.relation.default" id="apidoc.element.bookshelf.relation.default">
+        function <span class="apidocSignatureSpan">bookshelf.relation.</span>default
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">default = function () {
+  return Parent.apply(this, arguments);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ *
+ *  @returns {Promise&#x3c;Collection&#x3e;} A promise resolving to this {@link
+ *  Collection collection}
+ */
+load: _promise2.default.method(function (relations, options) {
+  if (!(0, _lodash.isArray)(relations)) relations = [relations];
+  options = (0, _lodash.extend)({}, options, { shallow: true, withRelated: relations });
+  return new _eager2.<span class="apidocCodeKeywordSpan">default</span>(this.models, this.toJSON(options), new this.model()).fetch
+(options).return(this);
+}),
+
+/**
+ * @method Collection#create
+ * @description
+ *
+ * Convenience method to create a new {@link Model model} instance within a
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.bookshelf.sync" id="apidoc.module.bookshelf.sync">module bookshelf.sync</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.sync.sync" id="apidoc.element.bookshelf.sync.sync">
+        function <span class="apidocSignatureSpan">bookshelf.</span>sync
+        <span class="apidocSignatureSpan">(syncing, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Sync(syncing, options) {
+  options = options || {};
+  this.query = syncing.query();
+  this.syncing = syncing.resetQuery();
+  this.options = options;
+  if (options.debug) this.query.debug();
+  if (options.transacting) this.query.transacting(options.transacting);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+   * @param {Object=} options
+   * @param {bool} [options.require=false] Trigger a {@link Collection.EmptyError} if no records are found.
+   * @param {string|string[]} [options.withRelated=[]] A relation, or list of relations, to be eager loaded as part of the `fetch
+` operation.
+   * @returns {Promise&#x3c;Collection&#x3e;}
+   */
+  fetch: _promise2.default.method(function (options) {
+options = options ? (0, _lodash.clone)(options) : {};
+return this.<span class="apidocCodeKeywordSpan">sync</span>(options).select().bind(this).tap(function (response) {
+  if (!response || response.length === 0) {
+    throw new this.constructor.EmptyError(&#x27;EmptyResponse&#x27;);
+  }
+})
+
+// Now, load all of the data onto the collection as necessary.
+.tap(this._handleResponse)
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.bookshelf.sync.prototype" id="apidoc.module.bookshelf.sync.prototype">module bookshelf.sync.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.sync.prototype.count" id="apidoc.element.bookshelf.sync.prototype.count">
+        function <span class="apidocSignatureSpan">bookshelf.sync.prototype.</span>count
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">count = function () {
+    var ret = new Promise(INTERNAL);
+    ret._captureStackTrace();
+    ret._pushContext();
+    var value = tryCatch(fn).apply(this, arguments);
+    var promiseCreated = ret._popContext();
+    debug.checkForgottenReturns(
+        value, promiseCreated, &#x22;Promise.method&#x22;, ret);
+    ret._resolveFromSyncValue(value);
+    return ret;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+*
+* @example
+*
+* // select count(*) from shareholders where company_id = 1 and share &#x26;gt; 0.1;
+* Company.forge({id:1})
+*   .shareholders()
+*   .query(&#x27;where&#x27;, &#x27;share&#x27;, &#x27;&#x3e;&#x27;, &#x27;0.1&#x27;)
+*   .<span class="apidocCodeKeywordSpan">count</span>()
+*   .then(function(count) {
+*     assert(count === 3);
+*   });
+*
+* @param {string} [column=&#x27;*&#x27;]
+*   Specify a column to count - rows with null values in this column will be excluded.
+* @param {Object=} options
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.sync.prototype.del" id="apidoc.element.bookshelf.sync.prototype.del">
+        function <span class="apidocSignatureSpan">bookshelf.sync.prototype.</span>del
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">del = function () {
+    var ret = new Promise(INTERNAL);
+    ret._captureStackTrace();
+    ret._pushContext();
+    var value = tryCatch(fn).apply(this, arguments);
+    var promiseCreated = ret._popContext();
+    debug.checkForgottenReturns(
+        value, promiseCreated, &#x22;Promise.method&#x22;, ret);
+    ret._resolveFromSyncValue(value);
+    return ret;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * @event Model#destroying
+ * @param {Model}  model    The model firing the event.
+ * @param {Object} options  Options object passed to {@link Model#save save}.
+ * @returns {Promise}
+ */
+return this.triggerThen(&#x27;destroying&#x27;, this, options);
+    }).then(function () {
+return sync.<span class="apidocCodeKeywordSpan">del</span>();
+    }).then(function (resp) {
+if (options.require &#x26;&#x26; resp === 0) {
+  throw new this.constructor.NoRowsDeletedError(&#x27;No Rows Deleted&#x27;);
+}
+this.clear();
+
+/**
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.sync.prototype.first" id="apidoc.element.bookshelf.sync.prototype.first">
+        function <span class="apidocSignatureSpan">bookshelf.sync.prototype.</span>first
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">first = function () {
+    var ret = new Promise(INTERNAL);
+    ret._captureStackTrace();
+    ret._pushContext();
+    var value = tryCatch(fn).apply(this, arguments);
+    var promiseCreated = ret._popContext();
+    debug.checkForgottenReturns(
+        value, promiseCreated, &#x22;Promise.method&#x22;, ret);
+    ret._resolveFromSyncValue(value);
+    return ret;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  },
+
+
+  _doFetch: _promise2.default.method(function (attributes, options) {
+options = options ? _lodash2.default.clone(options) : {};
+
+// Run the `first` call on the `sync` object to fetch a single model.
+return this.sync(options).<span class="apidocCodeKeywordSpan">first</span>(attributes).bind(this)
+
+// Jump the rest of the chain if the response doesn&#x27;t exist...
+.tap(function (response) {
+  if (!response || response.length === 0) {
+    throw new this.constructor.NotFoundError(&#x27;EmptyResponse&#x27;);
+  }
+})
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.sync.prototype.insert" id="apidoc.element.bookshelf.sync.prototype.insert">
+        function <span class="apidocSignatureSpan">bookshelf.sync.prototype.</span>insert
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">insert = function () {
+    var ret = new Promise(INTERNAL);
+    ret._captureStackTrace();
+    ret._pushContext();
+    var value = tryCatch(fn).apply(this, arguments);
+    var promiseCreated = ret._popContext();
+    debug.checkForgottenReturns(
+        value, promiseCreated, &#x22;Promise.method&#x22;, ret);
+    ret._resolveFromSyncValue(value);
+    return ret;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+        throw new Error(&#x27;No rows were updated&#x27;);
+      }
+      return numUpdated;
+    });
+  }
+
+  return this.triggerThen(&#x27;creating&#x27;, this, data, options).then(function () {
+    return builder.<span class="apidocCodeKeywordSpan">insert</span>(data).then(function () {
+      collection.add(item);
+    });
+  });
+}),
+
+// Loads or prepares a pivot model based on the constraints and deals with
+// pivot model changes by calling the appropriate Bookshelf Model API
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.sync.prototype.prefixFields" id="apidoc.element.bookshelf.sync.prototype.prefixFields">
+        function <span class="apidocSignatureSpan">bookshelf.sync.prototype.</span>prefixFields
+        <span class="apidocSignatureSpan">(fields)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function prefixFields(fields) {
+  var tableName = this.syncing.tableName;
+  var prefixed = {};
+  for (var key in fields) {
+    prefixed[tableName + &#x27;.&#x27; + key] = fields[key];
+  }
+  return prefixed;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+//
+// NOTE: `_.omit` returns an empty object, even if attributes are null.
+var whereAttributes = _lodash2.default.omitBy(attributes, _lodash2.default.isPlainObject);
+
+if (!_lodash2.default.isEmpty(whereAttributes)) {
+
+  // Format and prefix attributes.
+  var formatted = this.<span class="apidocCodeKeywordSpan">prefixFields</span>(model.format(whereAttributes));
+  query.where(formatted);
+}
+
+// Limit to a single result.
+query.limit(1);
+
+return this.select();
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.sync.prototype.select" id="apidoc.element.bookshelf.sync.prototype.select">
+        function <span class="apidocSignatureSpan">bookshelf.sync.prototype.</span>select
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">select = function () {
+    var ret = new Promise(INTERNAL);
+    ret._captureStackTrace();
+    ret._pushContext();
+    var value = tryCatch(fn).apply(this, arguments);
+    var promiseCreated = ret._popContext();
+    debug.checkForgottenReturns(
+        value, promiseCreated, &#x22;Promise.method&#x22;, ret);
+    ret._resolveFromSyncValue(value);
+    return ret;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+   * @param {Object=} options
+   * @param {bool} [options.require=false] Trigger a {@link Collection.EmptyError} if no records are found.
+   * @param {string|string[]} [options.withRelated=[]] A relation, or list of relations, to be eager loaded as part of the `fetch
+` operation.
+   * @returns {Promise&#x3c;Collection&#x3e;}
+   */
+  fetch: _promise2.default.method(function (options) {
+options = options ? (0, _lodash.clone)(options) : {};
+return this.sync(options).<span class="apidocCodeKeywordSpan">select</span>().bind(this).tap(function (response) {
+  if (!response || response.length === 0) {
+    throw new this.constructor.EmptyError(&#x27;EmptyResponse&#x27;);
+  }
+})
+
+// Now, load all of the data onto the collection as necessary.
+.tap(this._handleResponse)
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bookshelf.sync.prototype.update" id="apidoc.element.bookshelf.sync.prototype.update">
+        function <span class="apidocSignatureSpan">bookshelf.sync.prototype.</span>update
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">update = function () {
+    var ret = new Promise(INTERNAL);
+    ret._captureStackTrace();
+    ret._pushContext();
+    var value = tryCatch(fn).apply(this, arguments);
+    var promiseCreated = ret._popContext();
+    debug.checkForgottenReturns(
+        value, promiseCreated, &#x22;Promise.method&#x22;, ret);
+    ret._resolveFromSyncValue(value);
+    return ret;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    var model = collection.get(data[relatedData.key(&#x27;otherKey&#x27;)]);
+    if (model) {
+      collection.remove(model);
+    }
+  });
+}
+if (method === &#x27;update&#x27;) {
+  return builder.where(data).<span class="apidocCodeKeywordSpan">update</span>(item).then(function (numUpdated) {
+    if (options &#x26;&#x26; options.require === true &#x26;&#x26; numUpdated === 0) {
+      throw new Error(&#x27;No rows were updated&#x27;);
+    }
+    return numUpdated;
+  });
+}
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
