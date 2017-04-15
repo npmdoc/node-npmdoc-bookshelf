@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="http://bookshelfjs.org"
-
-    >bookshelf (v0.10.3)</a>
+    <a href="http://bookshelfjs.org">bookshelf (v0.10.3)</a>
 </h1>
 <h4>A lightweight ORM for PostgreSQL, MySQL, and SQLite3</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.bookshelf">module bookshelf</a><ol>
 
@@ -105,7 +98,7 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function Bookshelf(knex) {
   var bookshelf = {
-    VERSION: require(&#x27;../package.json&#x27;).version
+    VERSION: require('../package.json').version
   };
 
   var Model = bookshelf.Model = _model2.default.extend({
@@ -114,12 +107,12 @@
 
     // The `Model` constructor is referenced as a property on the `Bookshelf`
     // instance, mixing in the correct `builder` method, as well as the
-    // `relation` method, passing in the correct `Model` &#x26; `Collection`
+    // `relation` method, passing in the correct `Model` &amp; `Collection`
     // constructors for later reference.
     _relation: function _relation(type, Target, options) {
-      if (type !== &#x27;morphTo&#x27; &#x26;&#x26; !(0, _lodash.isFunction)(Target)) {
-        throw new Error(&#x27;A valid target model must be defined for the &#x27; + (0, _lodash.result)(this, &#x27;tableName&#x27;) + &#x27; &#x27; + type + &#x27;
-relation&#x27;);
+      if (type !== 'morphTo' &amp;&amp; !(0, _lodash.isFunction)(Target)) {
+        throw new Error('A valid target model must be defined for the ' + (0, _lodash.result)(this, 'tableName') + ' ' + type + '
+relation');
       }
       return new Relation(type, Target, options);
     }
@@ -132,7 +125,7 @@ relation&#x27;);
      *
      * A simple helper function to instantiate a new Model without needing `new`.
      *
-     * @param {Object=} attributes Initial values for this model&#x27;s attributes.
+     * @param {Object=} attributes Initial values for this model's attributes.
      * @param {Object=}  options               Hash of options.
      * @param {string=}  options.tableName     Initial value for {@linkcode Model#tableName tableName}.
      * @param {boolean=} [options.hasTimestamps=false]
@@ -152,7 +145,7 @@ relation&#x27;);
      * @description
      *
      * A simple static helper to instantiate a new {@link Collection}, setting
-     * the current `model` as the collection&#x27;s target.
+     * the current `model` as the collection's target.
      *
      * @example
      *
@@ -179,11 +172,11 @@ relation&#x27;);
      * previous calls to {@link Model#query query}. If a `column` is provided,
      * records with a null value in that column will be excluded from the count.
      *
-     * @param {string} [column=&#x27;*&#x27;]
+     * @param {string} [column='*']
      *   Specify a column to count - rows with null values in this column will be excluded.
      * @param {Object=} options
      *   Hash of options.
-     * @returns {Promise&#x3c;Number&#x3e;}
+     * @returns {Promise&lt;Number&gt;}
      *   A promise resolving to the number of matching rows.
      */
     count: function count(column, options) {
@@ -199,7 +192,7 @@ relation&#x27;);
      * Simple helper function for retrieving all instances of the given model.
      *
      * @see Model#fetchAll
-     * @returns {Promise&#x3c;Collection&#x3e;}
+     * @returns {Promise&lt;Collection&gt;}
      */
     fetchAll: function fetchAll(options) {
       return this.forge().fetchAll(options);
@@ -227,17 +220,17 @@ relation&#x27;);
      *
      * @example
      *
-     * var Promise = require(&#x27;bluebird&#x27;);
+     * var Promise = require('bluebird');
      * var Accounts = bookshelf.Collection.extend({
      *   model: Account
      * });
      *
      * var accounts = Accounts.forge([
-     *   {name: &#x27;Person1&#x27;},
-     *   {name: &#x27;Person2&#x27;}
+     *   {name: 'Person1'},
+     *   {name: 'Person2'}
      * ]);
      *
-     * Promise.all(accounts.invoke(&#x27;save&#x27;)).then(funct ...</pre></li>
+     * Promise.all(accounts.invoke('save')).then(funct ...</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -251,7 +244,7 @@ relation&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">initialize = function (knex) {
-  _helpers2.default.warn(&#x22;Bookshelf.initialize is deprecated, pass knex directly: require(&#x27;bookshelf&#x27;)(knex)&#x22;);
+  _helpers2.default.warn("Bookshelf.initialize is deprecated, pass knex directly: require('bookshelf')(knex)");
   return new Bookshelf(knex);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -281,3 +274,4 @@ relation&#x27;);
     ]
 </div>
 </div>
+</body></html>
