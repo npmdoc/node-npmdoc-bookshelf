@@ -15,7 +15,7 @@ npmdoc-bookshelf@0.0.1 /home/travis/build/npmdoc/node-npmdoc-bookshelf
   │ │ │ └── is-extglob@1.0.0 
   │ │ ├─┬ micromatch@2.3.11 
   │ │ │ ├─┬ arr-diff@2.0.0 
-  │ │ │ │ └── arr-flatten@1.0.1 
+  │ │ │ │ └── arr-flatten@1.0.2 
   │ │ │ ├── array-unique@0.2.1 
   │ │ │ ├─┬ braces@1.8.5 
   │ │ │ │ ├─┬ expand-range@1.8.2 
