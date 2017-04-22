@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="http://bookshelfjs.org"
-
-    >bookshelf (v0.10.3)</a>
+    <a href="http://bookshelfjs.org">bookshelf (v0.10.3)</a>
 </h1>
 <h4>A lightweight ORM for PostgreSQL, MySQL, and SQLite3</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.bookshelf">module bookshelf</a><ol>
 
@@ -731,7 +724,7 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function Bookshelf(knex) {
   var bookshelf = {
-    VERSION: require(&#x27;../package.json&#x27;).version
+    VERSION: require('../package.json').version
   };
 
   var Model = bookshelf.Model = _model2.default.extend({
@@ -740,12 +733,12 @@
 
     // The `Model` constructor is referenced as a property on the `Bookshelf`
     // instance, mixing in the correct `builder` method, as well as the
-    // `relation` method, passing in the correct `Model` &#x26; `Collection`
+    // `relation` method, passing in the correct `Model` &amp; `Collection`
     // constructors for later reference.
     _relation: function _relation(type, Target, options) {
-      if (type !== &#x27;morphTo&#x27; &#x26;&#x26; !(0, _lodash.isFunction)(Target)) {
-        throw new Error(&#x27;A valid target model must be defined for the &#x27; + (0, _lodash.result)(this, &#x27;tableName&#x27;) + &#x27; &#x27; + type + &#x27;
-relation&#x27;);
+      if (type !== 'morphTo' &amp;&amp; !(0, _lodash.isFunction)(Target)) {
+        throw new Error('A valid target model must be defined for the ' + (0, _lodash.result)(this, 'tableName') + ' ' + type + '
+relation');
       }
       return new Relation(type, Target, options);
     }
@@ -758,7 +751,7 @@ relation&#x27;);
      *
      * A simple helper function to instantiate a new Model without needing `new`.
      *
-     * @param {Object=} attributes Initial values for this model&#x27;s attributes.
+     * @param {Object=} attributes Initial values for this model's attributes.
      * @param {Object=}  options               Hash of options.
      * @param {string=}  options.tableName     Initial value for {@linkcode Model#tableName tableName}.
      * @param {boolean=} [options.hasTimestamps=false]
@@ -778,7 +771,7 @@ relation&#x27;);
      * @description
      *
      * A simple static helper to instantiate a new {@link Collection}, setting
-     * the current `model` as the collection&#x27;s target.
+     * the current `model` as the collection's target.
      *
      * @example
      *
@@ -805,11 +798,11 @@ relation&#x27;);
      * previous calls to {@link Model#query query}. If a `column` is provided,
      * records with a null value in that column will be excluded from the count.
      *
-     * @param {string} [column=&#x27;*&#x27;]
+     * @param {string} [column='*']
      *   Specify a column to count - rows with null values in this column will be excluded.
      * @param {Object=} options
      *   Hash of options.
-     * @returns {Promise&#x3c;Number&#x3e;}
+     * @returns {Promise&lt;Number&gt;}
      *   A promise resolving to the number of matching rows.
      */
     count: function count(column, options) {
@@ -825,7 +818,7 @@ relation&#x27;);
      * Simple helper function for retrieving all instances of the given model.
      *
      * @see Model#fetchAll
-     * @returns {Promise&#x3c;Collection&#x3e;}
+     * @returns {Promise&lt;Collection&gt;}
      */
     fetchAll: function fetchAll(options) {
       return this.forge().fetchAll(options);
@@ -853,17 +846,17 @@ relation&#x27;);
      *
      * @example
      *
-     * var Promise = require(&#x27;bluebird&#x27;);
+     * var Promise = require('bluebird');
      * var Accounts = bookshelf.Collection.extend({
      *   model: Account
      * });
      *
      * var accounts = Accounts.forge([
-     *   {name: &#x27;Person1&#x27;},
-     *   {name: &#x27;Person2&#x27;}
+     *   {name: 'Person1'},
+     *   {name: 'Person2'}
      * ]);
      *
-     * Promise.all(accounts.invoke(&#x27;save&#x27;)).then(funct ...</pre></li>
+     * Promise.all(accounts.invoke('save')).then(funct ...</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -877,7 +870,7 @@ relation&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">initialize = function (knex) {
-  _helpers2.default.warn(&#x22;Bookshelf.initialize is deprecated, pass knex directly: require(&#x27;bookshelf&#x27;)(knex)&#x22;);
+  _helpers2.default.warn("Bookshelf.initialize is deprecated, pass knex directly: require('bookshelf')(knex)");
   return new Bookshelf(knex);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -899,7 +892,7 @@ relation&#x27;);
  *  Optionally run the query in a transaction.
  *
  * @throws {Model.NotFoundError}
- * @returns {Promise&#x3c;Model|null&#x3e;}
+ * @returns {Promise&lt;Model|null&gt;}
  *  A promise resolving to the fetched {@link Model model} or `null` if none exists.
  */
 fetchOne: _promise2.default.method(function (options) {
@@ -936,13 +929,13 @@ fetchOne: _promise2.default.method(function (options) {
    * @param {bool} [options.require=false] Trigger a {@link Collection.EmptyError} if no records are found.
    * @param {string|string[]} [options.withRelated=[]] A relation, or list of relations, to be eager loaded as part of the `fetch
 ` operation.
-   * @returns {Promise&#x3c;Collection&#x3e;}
+   * @returns {Promise&lt;Collection&gt;}
    */
   fetch: _promise2.default.method(function (options) {
 options = options ? (0, _lodash.clone)(options) : {};
 return this.<span class="apidocCodeKeywordSpan">sync</span>(options).select().bind(this).tap(function (response) {
   if (!response || response.length === 0) {
-    throw new this.constructor.EmptyError(&#x27;EmptyResponse&#x27;);
+    throw new this.constructor.EmptyError('EmptyResponse');
   }
 })
 
@@ -988,7 +981,7 @@ return this.<span class="apidocCodeKeywordSpan">sync</span>(options).select().bi
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
  *
- *  @returns {Promise&#x3c;Collection&#x3e;} A promise resolving to this {@link
+ *  @returns {Promise&lt;Collection&gt;} A promise resolving to this {@link
  *  Collection collection}
  */
 load: _promise2.default.method(function (relations, options) {
@@ -1027,7 +1020,7 @@ this, arguments));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
  *
- *  @returns {Promise&#x3c;Collection&#x3e;} A promise resolving to this {@link
+ *  @returns {Promise&lt;Collection&gt;} A promise resolving to this {@link
  *  Collection collection}
  */
 load: _promise2.default.method(function (relations, options) {
@@ -1073,20 +1066,20 @@ load: _promise2.default.method(function (relations, options) {
     <li>example usage<pre class="apidocCodePre">...
    * @param {string|string[]} [options.withRelated=[]] A relation, or list of relations, to be eager loaded as part of the `fetch
 ` operation.
-   * @returns {Promise&#x3c;Collection&#x3e;}
+   * @returns {Promise&lt;Collection&gt;}
    */
   fetch: _promise2.default.method(function (options) {
 options = options ? (0, _lodash.clone)(options) : {};
 return this.sync(options).select().bind(this).tap(function (response) {
   if (!response || response.length === 0) {
-    throw new this.constructor.<span class="apidocCodeKeywordSpan">EmptyError</span>(&#x27;EmptyResponse&#x27;);
+    throw new this.constructor.<span class="apidocCodeKeywordSpan">EmptyError</span>('EmptyResponse');
   }
 })
 
 // Now, load all of the data onto the collection as necessary.
 .tap(this._handleResponse)
 
-// If the &#x22;withRelated&#x22; is specified, we also need to eager load all of the
+// If the "withRelated" is specified, we also need to eager load all of the
 ...</pre></li>
     </ul>
 
@@ -1113,12 +1106,12 @@ return this.sync(options).select().bind(this).tap(function (response) {
     <li>example usage<pre class="apidocCodePre">...
  * @returns {Promise}
  */
-return this.triggerThen(&#x27;destroying&#x27;, this, options);
+return this.triggerThen('destroying', this, options);
     }).then(function () {
 return sync.del();
     }).then(function (resp) {
-if (options.require &#x26;&#x26; resp === 0) {
-  throw new this.constructor.<span class="apidocCodeKeywordSpan">NoRowsDeletedError</span>(&#x27;No Rows Deleted&#x27;);
+if (options.require &amp;&amp; resp === 0) {
+  throw new this.constructor.<span class="apidocCodeKeywordSpan">NoRowsDeletedError</span>('No Rows Deleted');
 }
 this.clear();
 
@@ -1150,14 +1143,14 @@ this.clear();
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-if (method === &#x27;insert&#x27; &#x26;&#x26; this.id == null) {
+if (method === 'insert' &amp;&amp; this.id == null) {
   var updatedCols = {};
   updatedCols[this.idAttribute] = this.id = resp[0];
   var updatedAttrs = this.parse(updatedCols);
   _lodash2.default.assign(this.attributes, updatedAttrs);
-} else if (method === &#x27;update&#x27; &#x26;&#x26; resp === 0) {
+} else if (method === 'update' &amp;&amp; resp === 0) {
   if (options.require !== false) {
-    throw new this.constructor.<span class="apidocCodeKeywordSpan">NoRowsUpdatedError</span>(&#x27;No Rows Updated&#x27;);
+    throw new this.constructor.<span class="apidocCodeKeywordSpan">NoRowsUpdatedError</span>('No Rows Updated');
   }
 }
 
@@ -1192,17 +1185,17 @@ options.previousAttributes = this._previousAttributes;
 // Run the `first` call on the `sync` object to fetch a single model.
 return this.sync(options).first(attributes).bind(this)
 
-// Jump the rest of the chain if the response doesn&#x27;t exist...
+// Jump the rest of the chain if the response doesn't exist...
 .tap(function (response) {
   if (!response || response.length === 0) {
-    throw new this.constructor.<span class="apidocCodeKeywordSpan">NotFoundError</span>(&#x27;EmptyResponse&#x27;);
+    throw new this.constructor.<span class="apidocCodeKeywordSpan">NotFoundError</span>('EmptyResponse');
   }
 })
 
 // Now, load all of the data into the model as necessary.
 .tap(this._handleResponse)
 
-// If the &#x22;withRelated&#x22; is specified, we also need to eager load all of the
+// If the "withRelated" is specified, we also need to eager load all of the
 ...</pre></li>
     </ul>
 
@@ -1227,7 +1220,7 @@ return this.sync(options).first(attributes).bind(this)
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
  *
- *  @returns {Promise&#x3c;Collection&#x3e;} A promise resolving to this {@link
+ *  @returns {Promise&lt;Collection&gt;} A promise resolving to this {@link
  *  Collection collection}
  */
 load: _promise2.default.method(function (relations, options) {
@@ -1260,7 +1253,7 @@ load: _promise2.default.method(function (relations, options) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function deprecate(a, b) {
-  helpers.warn(a + &#x27; has been deprecated, please use &#x27; + b + &#x27; instead&#x27;);
+  helpers.warn(a + ' has been deprecated, please use ' + b + ' instead');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1279,11 +1272,11 @@ load: _promise2.default.method(function (relations, options) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 var Tag = bookshelf.Model.extend({
-  tableName: &#x27;tags&#x27;
+  tableName: 'tags'
 })
 
-User.where(&#x27;id&#x27;, 1).fetch({withRelated: [&#x27;posts.tags&#x27;]}).then(function(user) {
-  console.log(user.related(&#x27;posts&#x27;).toJSON());
+User.where('id', 1).fetch({withRelated: ['posts.tags']}).then(function(user) {
+  console.log(user.related('posts').toJSON());
 }).catch(function(err) {
   console.<span class="apidocCodeKeywordSpan">error</span>(err);
 });
@@ -1310,16 +1303,16 @@ circular module dependencies in Node.
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function morphCandidate(candidates, foreignTable) {
   var Target = _.find(candidates, function (Candidate) {
-    return _.result(Candidate.prototype, &#x27;tableName&#x27;) === foreignTable;
+    return _.result(Candidate.prototype, 'tableName') === foreignTable;
   });
   if (!Target) {
-    throw new Error(&#x27;The target polymorphic model was not found&#x27;);
+    throw new Error('The target polymorphic model was not found');
   }
   return Target;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
     _columnNames$2 = _columnNames[1],
-    idColumn = _columnNames$2 === undefined ? morphName + &#x27;_id&#x27; : _columnNames$2;
+    idColumn = _columnNames$2 === undefined ? morphName + '_id' : _columnNames$2;
 
 var parentsByType = _lodash2.default.groupBy(this.parent, function (model) {
   return model.get(typeColumn);
@@ -1330,7 +1323,7 @@ var TargetByType = _lodash2.default.mapValues(parentsByType, function (parents, 
 
 return _promise2.default.all(_lodash2.default.map(parentsByType, function (parents, type) {
   var Target = TargetByType[type];
-  var idAttribute = _lodash2.default.result(Target.prototype, &#x27;idAttribute&#x27;);
+  var idAttribute = _lodash2.default.result(Target.prototype, 'idAttribute');
   var ids = getAttributeUnique(parents, idColumn);
 ...</pre></li>
     </ul>
@@ -1351,15 +1344,15 @@ return _promise2.default.all(_lodash2.default.map(parentsByType, function (paren
 
   if (obj.model) {
     tableName = obj.model.prototype.tableName;
-    idAttribute = obj.model.prototype.idAttribute ? obj.model.prototype.idAttribute : &#x27;id&#x27;;
+    idAttribute = obj.model.prototype.idAttribute ? obj.model.prototype.idAttribute : 'id';
   } else {
     tableName = obj.constructor.prototype.tableName;
-    idAttribute = obj.constructor.prototype.idAttribute ? obj.constructor.prototype.idAttribute : &#x27;id&#x27;;
+    idAttribute = obj.constructor.prototype.idAttribute ? obj.constructor.prototype.idAttribute : 'id';
   }
 
   var _sort = void 0;
 
-  if (sort &#x26;&#x26; sort.indexOf(&#x27;-&#x27;) === 0) {
+  if (sort &amp;&amp; sort.indexOf('-') === 0) {
     _sort = sort.slice(1);
   } else if (sort) {
     _sort = sort;
@@ -1367,10 +1360,10 @@ return _promise2.default.all(_lodash2.default.map(parentsByType, function (paren
     _sort = idAttribute;
   }
 
-  var _order = order || (sort &#x26;&#x26; sort.indexOf(&#x27;-&#x27;) === 0 ? &#x27;DESC&#x27; : &#x27;ASC&#x27;);
+  var _order = order || (sort &amp;&amp; sort.indexOf('-') === 0 ? 'DESC' : 'ASC');
 
-  if (_sort.indexOf(&#x27;.&#x27;) === -1) {
-    _sort = tableName + &#x27;.&#x27; + _sort;
+  if (_sort.indexOf('.') === -1) {
+    _sort = tableName + '.' + _sort;
   }
 
   return obj.query(function (qb) {
@@ -1378,20 +1371,20 @@ return _promise2.default.all(_lodash2.default.map(parentsByType, function (paren
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-* name. `orderBy(&#x22;date&#x22;, &#x27;DESC&#x27;)` is the same as `orderBy(&#x22;-date&#x22;)`.
+* name. `orderBy("date", 'DESC')` is the same as `orderBy("-date")`.
 *
-* Unless specified using dot notation (i.e., &#x22;table.column&#x22;), the default
+* Unless specified using dot notation (i.e., "table.column"), the default
 * table will be the table name of the model `orderBy` was called on.
 *
 * @example
 *
-* Cars.forge().<span class="apidocCodeKeywordSpan">orderBy</span>(&#x27;color&#x27;, &#x27;ASC&#x27;).fetch()
+* Cars.forge().<span class="apidocCodeKeywordSpan">orderBy</span>('color', 'ASC').fetch()
 *    .then(function (rows) { // ...
 *
 * @param sort {string}
 *   Column to sort on
 * @param order {string}
-*   Ascending (&#x27;ASC&#x27;) or descending (&#x27;DESC&#x27;) order
+*   Ascending ('ASC') or descending ('DESC') order
 */
 ...</pre></li>
     </ul>
@@ -1409,7 +1402,7 @@ return _promise2.default.all(_lodash2.default.map(parentsByType, function (paren
 
   // Ensure the object has a query builder.
   if (!obj._knex) {
-    var tableName = _.result(obj, &#x27;tableName&#x27;);
+    var tableName = _.result(obj, 'tableName');
     obj._knex = obj._builder(tableName);
   }
 
@@ -1440,20 +1433,20 @@ return _promise2.default.all(_lodash2.default.map(parentsByType, function (paren
   return obj;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-* Get the number of records in the collection&#x27;s table.
+* Get the number of records in the collection's table.
 *
 * @example
 *
-* // select count(*) from shareholders where company_id = 1 and share &#x26;gt; 0.1;
+* // select count(*) from shareholders where company_id = 1 and share &amp;gt; 0.1;
 * Company.forge({id:1})
 *   .shareholders()
-*   .<span class="apidocCodeKeywordSpan">query</span>(&#x27;where&#x27;, &#x27;share&#x27;, &#x27;&#x3e;&#x27;, &#x27;0.1&#x27;)
+*   .<span class="apidocCodeKeywordSpan">query</span>('where', 'share', '&gt;', '0.1')
 *   .count()
 *   .then(function(count) {
 *     assert(count === 3);
 *   });
 *
-* @param {string} [column=&#x27;*&#x27;]
+* @param {string} [column='*']
 *   Specify a column to count - rows with null values in this column will be excluded.
 ...</pre></li>
     </ul>
@@ -1469,15 +1462,15 @@ return _promise2.default.all(_lodash2.default.map(parentsByType, function (paren
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function saveConstraints(model, relatedData) {
   var data = {};
-  if (relatedData &#x26;&#x26; !relatedData.isThrough() &#x26;&#x26; relatedData.type !== &#x27;belongsToMany&#x27; &#x26;&#x26; relatedData.type !== &#x27;belongsTo&#x27;) {
-    data[relatedData.key(&#x27;foreignKey&#x27;)] = relatedData.parentFk || model.get(relatedData.key(&#x27;foreignKey&#x27;));
-    if (relatedData.isMorph()) data[relatedData.key(&#x27;morphKey&#x27;)] = relatedData.key(&#x27;morphValue&#x27;);
+  if (relatedData &amp;&amp; !relatedData.isThrough() &amp;&amp; relatedData.type !== 'belongsToMany' &amp;&amp; relatedData.type !== 'belongsTo') {
+    data[relatedData.key('foreignKey')] = relatedData.parentFk || model.get(relatedData.key('foreignKey'));
+    if (relatedData.isMorph()) data[relatedData.key('morphKey')] = relatedData.key('morphValue');
   }
   return model.set(model.parse(data));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-  // If we&#x27;ve already added things on the query chain,
+  // If we've already added things on the query chain,
   // these are likely intended for the model.
   if (this._knex) {
     model._knex = this._knex;
@@ -1485,8 +1478,8 @@ return _promise2.default.all(_lodash2.default.map(parentsByType, function (paren
   }
   return _helpers2.default.<span class="apidocCodeKeywordSpan">saveConstraints</span>(model, relatedData).save(null, options).bind
 (this).then(function () {
-    if (relatedData &#x26;&#x26; relatedData.type === &#x27;belongsToMany&#x27;) {
-      return this.attach(model, (0, _lodash.omit)(options, &#x27;query&#x27;));
+    if (relatedData &amp;&amp; relatedData.type === 'belongsToMany') {
+      return this.attach(model, (0, _lodash.omit)(options, 'query'));
     }
   }).then(function () {
     this.add(model, options);
@@ -1515,7 +1508,7 @@ console.log(chalk.yellow(msg));
   },
 
   deprecate: function deprecate(a, b) {
-helpers.<span class="apidocCodeKeywordSpan">warn</span>(a + &#x27; has been deprecated, please use &#x27; + b + &#x27; instead&#
+helpers.<span class="apidocCodeKeywordSpan">warn</span>(a + ' has been deprecated, please use ' + b + ' instead&amp;#
 x27;);
   },
 
@@ -1547,7 +1540,7 @@ var idAttribute = void 0;
  *  Optionally run the query in a transaction.
  *
  * @throws {Model.NotFoundError}
- * @returns {Promise&#x3c;Model|null&#x3e;}
+ * @returns {Promise&lt;Model|null&gt;}
  *  A promise resolving to the fetched {@link Model model} or `null` if none exists.
  */
 fetchOne: _promise2.default.method(function (options) {
@@ -1585,12 +1578,12 @@ fetchOne: _promise2.default.method(function (options) {
     <li>example usage<pre class="apidocCodePre">...
  * @returns {Promise}
  */
-return this.triggerThen(&#x27;destroying&#x27;, this, options);
+return this.triggerThen('destroying', this, options);
     }).then(function () {
 return sync.del();
     }).then(function (resp) {
-if (options.require &#x26;&#x26; resp === 0) {
-  throw new this.constructor.<span class="apidocCodeKeywordSpan">NoRowsDeletedError</span>(&#x27;No Rows Deleted&#x27;);
+if (options.require &amp;&amp; resp === 0) {
+  throw new this.constructor.<span class="apidocCodeKeywordSpan">NoRowsDeletedError</span>('No Rows Deleted');
 }
 this.clear();
 
@@ -1622,14 +1615,14 @@ this.clear();
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-if (method === &#x27;insert&#x27; &#x26;&#x26; this.id == null) {
+if (method === 'insert' &amp;&amp; this.id == null) {
   var updatedCols = {};
   updatedCols[this.idAttribute] = this.id = resp[0];
   var updatedAttrs = this.parse(updatedCols);
   _lodash2.default.assign(this.attributes, updatedAttrs);
-} else if (method === &#x27;update&#x27; &#x26;&#x26; resp === 0) {
+} else if (method === 'update' &amp;&amp; resp === 0) {
   if (options.require !== false) {
-    throw new this.constructor.<span class="apidocCodeKeywordSpan">NoRowsUpdatedError</span>(&#x27;No Rows Updated&#x27;);
+    throw new this.constructor.<span class="apidocCodeKeywordSpan">NoRowsUpdatedError</span>('No Rows Updated');
   }
 }
 
@@ -1664,17 +1657,17 @@ options.previousAttributes = this._previousAttributes;
 // Run the `first` call on the `sync` object to fetch a single model.
 return this.sync(options).first(attributes).bind(this)
 
-// Jump the rest of the chain if the response doesn&#x27;t exist...
+// Jump the rest of the chain if the response doesn't exist...
 .tap(function (response) {
   if (!response || response.length === 0) {
-    throw new this.constructor.<span class="apidocCodeKeywordSpan">NotFoundError</span>(&#x27;EmptyResponse&#x27;);
+    throw new this.constructor.<span class="apidocCodeKeywordSpan">NotFoundError</span>('EmptyResponse');
   }
 })
 
 // Now, load all of the data into the model as necessary.
 .tap(this._handleResponse)
 
-// If the &#x22;withRelated&#x22; is specified, we also need to eager load all of the
+// If the "withRelated" is specified, we also need to eager load all of the
 ...</pre></li>
     </ul>
 
@@ -1691,9 +1684,9 @@ return this.sync(options).first(attributes).bind(this)
   var Parent = this;
 
   // The constructor function for the new subclass is either defined by you
-  // (the &#x22;constructor&#x22; property in your `extend` definition), or defaulted
-  // by us to simply call the parent&#x27;s constructor.
-  var Child = protoProps &#x26;&#x26; protoProps.hasOwnProperty(&#x27;constructor&#x27;) ? protoProps.constructor : function () {
+  // (the "constructor" property in your `extend` definition), or defaulted
+  // by us to simply call the parent's constructor.
+  var Child = protoProps &amp;&amp; protoProps.hasOwnProperty('constructor') ? protoProps.constructor : function () {
     return Parent.apply(this, arguments);
   };
 
@@ -1713,30 +1706,30 @@ return this.sync(options).first(attributes).bind(this)
     (0, _lodash.assign)(Child.prototype, protoProps);
   }
 
-  // Give child access to the parent prototype as part of &#x22;super&#x22;
+  // Give child access to the parent prototype as part of "super"
   Child.__super__ = Parent.prototype;
 
-  // If there is an &#x22;extended&#x22; function set on the parent,
+  // If there is an "extended" function set on the parent,
   // call it with the extended child object.
   if ((0, _lodash.isFunction)(Parent.extended)) Parent.extended(Child);
 
   return Child;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    database : &#x27;myapp_test&#x27;,
-    charset  : &#x27;utf8&#x27;
+    database : 'myapp_test',
+    charset  : 'utf8'
   }
 });
 
-var bookshelf = require(&#x27;bookshelf&#x27;)(knex);
+var bookshelf = require('bookshelf')(knex);
 
 var User = bookshelf.Model.<span class="apidocCodeKeywordSpan">extend</span>({
-  tableName: &#x27;users&#x27;
+  tableName: 'users'
 });
 ```
 
 This initialization should likely only ever happen once in your application. As it creates a connection pool for the current database
-, you should use the `bookshelf` instance returned throughout your library. You&#x27;ll need to store this instance created by the
+, you should use the `bookshelf` instance returned throughout your library. You'll need to store this instance created by the
  initialize somewhere in the application so you can reference it. A common pattern to follow is to initialize the client in a module
  so you can easily reference it later:
 
@@ -1785,10 +1778,10 @@ This initialization should likely only ever happen once in your application. As 
     <li>example usage<pre class="apidocCodePre">...
   }
 
-  // Give child access to the parent prototype as part of &#x22;super&#x22;
+  // Give child access to the parent prototype as part of "super"
   Child.__super__ = Parent.prototype;
 
-  // If there is an &#x22;extended&#x22; function set on the parent,
+  // If there is an "extended" function set on the parent,
   // call it with the extended child object.
   if ((0, _lodash.isFunction)(Parent.extended)) Parent.<span class="apidocCodeKeywordSpan">extended</span>(Child);
 
@@ -1837,7 +1830,7 @@ This initialization should likely only ever happen once in your application. As 
     var value = tryCatch(fn).apply(this, arguments);
     var promiseCreated = ret._popContext();
     debug.checkForgottenReturns(
-        value, promiseCreated, &#x22;Promise.method&#x22;, ret);
+        value, promiseCreated, "Promise.method", ret);
     ret._resolveFromSyncValue(value);
     return ret;
 }</pre></li>
@@ -1874,13 +1867,13 @@ refresh: function refresh(options) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-    // If the &#x22;withRelated&#x22; is specified, we also need to eager load all of the
+    // If the "withRelated" is specified, we also need to eager load all of the
     // data on the collection, as a side-effect, before we ultimately jump into the
     // next step of the collection. Since the `columns` are only relevant to the current
     // level, ensure those are omitted from the options.
     .tap(function (response) {
 if (options.withRelated) {
-  return this.<span class="apidocCodeKeywordSpan">_handleEager</span>(response, (0, _lodash.omit)(options, &#x27;columns&#x27;));
+  return this.<span class="apidocCodeKeywordSpan">_handleEager</span>(response, (0, _lodash.omit)(options, 'columns'));
 }
     }).tap(function (response) {
 
@@ -1903,7 +1896,7 @@ if (options.withRelated) {
     <li>description and source-code<pre class="apidocCodePre">function _handleResponse(response) {
   var relatedData = this.relatedData;
   this.set(this.parse(response[0]), { silent: true })._reset();
-  if (relatedData &#x26;&#x26; relatedData.isJoined()) {
+  if (relatedData &amp;&amp; relatedData.isJoined()) {
     relatedData.parsePivot([this]);
   }
 }</pre></li>
@@ -1925,7 +1918,7 @@ if (options.withRelated) {
     morphValue = columnNames;
     columnNames = null;
   }
-  if (!morphName || !Target) throw new Error(&#x27;The polymorphic `name` and `Target` are required.&#x27;);
+  if (!morphName || !Target) throw new Error('The polymorphic `name` and `Target` are required.');
   return this._relation(type, Target, { morphName: morphName, morphValue: morphValue, columnNames: columnNames }).init(this);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -1936,7 +1929,7 @@ if (options.withRelated) {
  * @returns {Model} The related model.
  */
 morphOne: function morphOne(Target, name, columnNames, morphValue) {
-  return this.<span class="apidocCodeKeywordSpan">_morphOneOrMany</span>(Target, name, columnNames, morphValue, &#x27;morphOne&#
+  return this.<span class="apidocCodeKeywordSpan">_morphOneOrMany</span>(Target, name, columnNames, morphValue, 'morphOne&amp;#
 x27;);
 },
 
@@ -1975,11 +1968,11 @@ return _helpers2.default.morphCandidate(relatedData.candidates, type);
       return _promise2.default.<span class="apidocCodeKeywordSpan">all</span>(_lodash2.default.map(parentsByType, function (parents
 , type) {
 var Target = TargetByType[type];
-var idAttribute = _lodash2.default.result(Target.prototype, &#x27;idAttribute&#x27;);
+var idAttribute = _lodash2.default.result(Target.prototype, 'idAttribute');
 var ids = getAttributeUnique(parents, idColumn);
 
-return Target.query(&#x27;whereIn&#x27;, idAttribute, ids).sync(options).select().tap(function (response) {
-  var clone = relatedData.instance(&#x27;morphTo&#x27;, Target, { morphName: morphName, columnNames: columnNames });
+return Target.query('whereIn', idAttribute, ids).sync(options).select().tap(function (response) {
+  var clone = relatedData.instance('morphTo', Target, { morphName: morphName, columnNames: columnNames });
   return _this3._eagerLoadHelper(response, relationName, { relatedData: clone }, options);
 ...</pre></li>
     </ul>
@@ -1994,7 +1987,7 @@ return Target.query(&#x27;whereIn&#x27;, idAttribute, ids).sync(options).select(
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function belongsTo(Target, foreignKey, foreignKeyTarget) {
-  return this._relation(&#x27;belongsTo&#x27;, Target, { foreignKey: foreignKey, foreignKeyTarget: foreignKeyTarget }).init(this);
+  return this._relation('belongsTo', Target, { foreignKey: foreignKey, foreignKeyTarget: foreignKeyTarget }).init(this);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 * Model#belongsTo belongsTo} relationship is used for a model that is a
@@ -2002,7 +1995,7 @@ return Target.query(&#x27;whereIn&#x27;, idAttribute, ids).sync(options).select(
 * model.
 *
 *     let Book = bookshelf.Model.extend({
-*       tableName: &#x27;books&#x27;,
+*       tableName: 'books',
 *       author: function() {
 *         return this.<span class="apidocCodeKeywordSpan">belongsTo</span>(Author);
 *       }
@@ -2010,8 +2003,8 @@ return Target.query(&#x27;whereIn&#x27;, idAttribute, ids).sync(options).select(
 *
 *     // select * from `books` where id = 1
 *     // select * from `authors` where id = book.author_id
-*     Book.where({id: 1}).fetch({withRelated: [&#x27;author&#x27;]}).then(function(book) {
-*       console.log(JSON.stringify(book.related(&#x27;author&#x27;)));
+*     Book.where({id: 1}).fetch({withRelated: ['author']}).then(function(book) {
+*       console.log(JSON.stringify(book.related('author')));
 ...</pre></li>
     </ul>
 
@@ -2025,7 +2018,7 @@ return Target.query(&#x27;whereIn&#x27;, idAttribute, ids).sync(options).select(
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function belongsToMany(Target, joinTableName, foreignKey, otherKey, foreignKeyTarget, otherKeyTarget) {
-  return this._relation(&#x27;belongsToMany&#x27;, Target, {
+  return this._relation('belongsToMany', Target, {
     joinTableName: joinTableName, foreignKey: foreignKey, otherKey: otherKey, foreignKeyTarget: foreignKeyTarget, otherKeyTarget
 : otherKeyTarget
   }).init(this);
@@ -2036,14 +2029,14 @@ return Target.query(&#x27;whereIn&#x27;, idAttribute, ids).sync(options).select(
 });
 
 var Posts = bookshelf.Model.extend({
-  tableName: &#x27;messages&#x27;,
+  tableName: 'messages',
   tags: function() {
     return this.<span class="apidocCodeKeywordSpan">belongsToMany</span>(Tag);
   }
 });
 
 var Tag = bookshelf.Model.extend({
-  tableName: &#x27;tags&#x27;
+  tableName: 'tags'
 })
 ...</pre></li>
     </ul>
@@ -2070,7 +2063,7 @@ var Tag = bookshelf.Model.extend({
     <li>example usage<pre class="apidocCodePre">...
  *
  * @throws {Model.NotFoundError}
- * @returns {Promise&#x3c;Model|null&#x3e;}
+ * @returns {Promise&lt;Model|null&gt;}
  *  A promise resolving to the fetched {@link Model model} or `null` if none exists.
  */
 fetchOne: _promise2.default.method(function (options) {
@@ -2102,16 +2095,16 @@ fetchOne: _promise2.default.method(function (options) {
 *
 * @example
 *
-* // select count(*) from shareholders where company_id = 1 and share &#x26;gt; 0.1;
+* // select count(*) from shareholders where company_id = 1 and share &amp;gt; 0.1;
 * Company.forge({id:1})
 *   .shareholders()
-*   .query(&#x27;where&#x27;, &#x27;share&#x27;, &#x27;&#x3e;&#x27;, &#x27;0.1&#x27;)
+*   .query('where', 'share', '&gt;', '0.1')
 *   .<span class="apidocCodeKeywordSpan">count</span>()
 *   .then(function(count) {
 *     assert(count === 3);
 *   });
 *
-* @param {string} [column=&#x27;*&#x27;]
+* @param {string} [column='*']
 *   Specify a column to count - rows with null values in this column will be excluded.
 * @param {Object=} options
 ...</pre></li>
@@ -2133,21 +2126,21 @@ fetchOne: _promise2.default.method(function (options) {
     var value = tryCatch(fn).apply(this, arguments);
     var promiseCreated = ret._popContext();
     debug.checkForgottenReturns(
-        value, promiseCreated, &#x22;Promise.method&#x22;, ret);
+        value, promiseCreated, "Promise.method", ret);
     ret._resolveFromSyncValue(value);
     return ret;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
 Make sure you check that the type is correct for the initial parameters passed to the initial model being fetched. For example `
-new Model({id: &#x27;1&#x27;}).load([relations...])` will not return the same as `Model({id: 1}).load([relations...])` - notice
+new Model({id: '1'}).load([relations...])` will not return the same as `Model({id: 1}).load([relations...])` - notice
 that the id is a string in one case and a number in the other. This can be a common mistake if retrieving the id from a url parameter
 .
 
-This is only an issue if you&#x27;re eager loading data with load without first fetching the original model. `Model({id: &#x27;1
-&#x27;}).fetch({withRelated: [relations...]})` should work just fine.
+This is only an issue if you're eager loading data with load without first fetching the original model. `Model({id: '1
+'}).fetch({withRelated: [relations...]})` should work just fine.
 
-### My process won&#x27;t exit after my script is finished, why?
+### My process won't exit after my script is finished, why?
 
 The issue here is that Knex, the database abstraction layer used by Bookshelf, uses connection pooling and thus keeps the database
  connection open. If you want your process to exit after your script has finished, you will have to call `.<span class="apidocCodeKeywordSpan
@@ -2157,11 +2150,11 @@ The issue here is that Knex, the database abstraction layer used by Bookshelf, u
 ### How do I debug?
 
 If you pass `{debug: true}` as one of the options in your initialize settings, you can see all of the query calls being made. Sometimes
- you need to dive a bit further into the various calls and see what all is going on behind the scenes. I&#x27;d recommend [node-
+ you need to dive a bit further into the various calls and see what all is going on behind the scenes. I'd recommend [node-
 inspector](https://github.com/dannycoates/node-inspector), which allows you to debug code with `debugger` statements like you would
  in the browser.
 
-Bookshelf uses its own copy of the &#x22;bluebird&#x22; promise library, you can read up here for more on debugging these promises
+Bookshelf uses its own copy of the "bluebird" promise library, you can read up here for more on debugging these promises
 ... but in short, adding:
 ...</pre></li>
     </ul>
@@ -2185,12 +2178,12 @@ Bookshelf uses its own copy of the &#x22;bluebird&#x22; promise library, you can
 });
 
 var Tag = bookshelf.Model.extend({
-  tableName: &#x27;tags&#x27;
+  tableName: 'tags'
 })
 
-User.where(&#x27;id&#x27;, 1).<span class="apidocCodeKeywordSpan">fetch</span>({withRelated: [&#x27;posts.tags&#x27;]}).then(function
+User.where('id', 1).<span class="apidocCodeKeywordSpan">fetch</span>({withRelated: ['posts.tags']}).then(function
 (user) {
-  console.log(user.related(&#x27;posts&#x27;).toJSON());
+  console.log(user.related('posts').toJSON());
 }).catch(function(err) {
   console.error(err);
 });
@@ -2213,47 +2206,47 @@ User.where(&#x27;id&#x27;, 1).<span class="apidocCodeKeywordSpan">fetch</span>({
   var _this = this;
 
   var collection = this.all();
-  return collection.once(&#x27;fetching&#x27;, function (__, columns, opts) {
+  return collection.once('fetching', function (__, columns, opts) {
 <span class="apidocCodeCommentSpan">    /**
      * Fired before a {@link Model#fetchAll fetchAll} operation. A promise
      * may be returned from the event handler for async behaviour.
      *
-     * @event Model#&#x22;fetching:collection&#x22;
+     * @event Model#"fetching:collection"
      * @param {Model}    collection The collection that has been fetched.
      * @param {string[]} columns    The columns being retrieved by the query.
      * @param {Object}   options    Options object passed to {@link Model#fetchAll fetchAll}.
      * @returns {Promise}
      */
-</span>    return _this.triggerThen(&#x27;fetching:collection&#x27;, collection, columns, opts);
-  }).once(&#x27;fetched&#x27;, function (__, resp, opts) {
+</span>    return _this.triggerThen('fetching:collection', collection, columns, opts);
+  }).once('fetched', function (__, resp, opts) {
     /**
      * Fired after a {@link Model#fetchAll fetchAll} operation. A promise
      * may be returned from the event handler for async behaviour.
      *
-     * @event Model#&#x22;fetched:collection&#x22;
+     * @event Model#"fetched:collection"
      * @param {Model}  collection The collection that has been fetched.
      * @param {Object} resp       The Knex query response.
      * @param {Object} options    Options object passed to {@link Model#fetchAll fetchAll}.
      * @returns {Promise}
      */
-    return _this.triggerThen(&#x27;fetched:collection&#x27;, collection, resp, opts);
+    return _this.triggerThen('fetched:collection', collection, resp, opts);
   }).fetch(options);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-* name. `orderBy(&#x22;date&#x22;, &#x27;DESC&#x27;)` is the same as `orderBy(&#x22;-date&#x22;)`.
+* name. `orderBy("date", 'DESC')` is the same as `orderBy("-date")`.
 *
-* Unless specified using dot notation (i.e., &#x22;table.column&#x22;), the default
+* Unless specified using dot notation (i.e., "table.column"), the default
 * table will be the table name of the model `orderBy` was called on.
 *
 * @example
 *
-* Car.forge().orderBy(&#x27;color&#x27;, &#x27;ASC&#x27;).<span class="apidocCodeKeywordSpan">fetchAll</span>()
+* Car.forge().orderBy('color', 'ASC').<span class="apidocCodeKeywordSpan">fetchAll</span>()
 *    .then(function (rows) { // ...
 *
 * @param sort {string}
 *   Column to sort on
 * @param order {string}
-*   Ascending (&#x27;ASC&#x27;) or descending (&#x27;DESC&#x27;) order
+*   Ascending ('ASC') or descending ('DESC') order
 */
 ...</pre></li>
     </ul>
@@ -2268,22 +2261,22 @@ User.where(&#x27;id&#x27;, 1).<span class="apidocCodeKeywordSpan">fetch</span>({
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function hasMany(Target, foreignKey, foreignKeyTarget) {
-  return this._relation(&#x27;hasMany&#x27;, Target, { foreignKey: foreignKey, foreignKeyTarget: foreignKeyTarget }).init(this);
+  return this._relation('hasMany', Target, { foreignKey: foreignKey, foreignKeyTarget: foreignKeyTarget }).init(this);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 ```js
-var knex = require(&#x27;knex&#x27;)({client: &#x27;mysql&#x27;, connection: process.env.MYSQL_DATABASE_CONNECTION });
-var bookshelf = require(&#x27;bookshelf&#x27;)(knex);
+var knex = require('knex')({client: 'mysql', connection: process.env.MYSQL_DATABASE_CONNECTION });
+var bookshelf = require('bookshelf')(knex);
 
 var User = bookshelf.Model.extend({
-tableName: &#x27;users&#x27;,
+tableName: 'users',
 posts: function() {
   return this.<span class="apidocCodeKeywordSpan">hasMany</span>(Posts);
 }
 });
 
 var Posts = bookshelf.Model.extend({
-tableName: &#x27;messages&#x27;,
+tableName: 'messages',
 tags: function() {
   return this.belongsToMany(Tag);
 ...</pre></li>
@@ -2299,22 +2292,22 @@ tags: function() {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function hasOne(Target, foreignKey, foreignKeyTarget) {
-  return this._relation(&#x27;hasOne&#x27;, Target, { foreignKey: foreignKey, foreignKeyTarget: foreignKeyTarget }).init(this);
+  return this._relation('hasOne', Target, { foreignKey: foreignKey, foreignKeyTarget: foreignKeyTarget }).init(this);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 *     let Record = bookshelf.Model.extend({
-*       tableName: &#x27;health_records&#x27;
+*       tableName: 'health_records'
 *     });
 *
 *     let Patient = bookshelf.Model.extend({
-*       tableName: &#x27;patients&#x27;,
+*       tableName: 'patients',
 *       record: function() {
 *         return this.<span class="apidocCodeKeywordSpan">hasOne</span>(Record);
 *       }
 *     });
 *
 *     // select * from `health_records` where `patient_id` = 1;
-*     new Patient({id: 1}).related(&#x27;record&#x27;).fetch().then(function(model) {
+*     new Patient({id: 1}).related('record').fetch().then(function(model) {
 *       // ...
 *     });
 ...</pre></li>
@@ -2336,7 +2329,7 @@ tags: function() {
     var value = tryCatch(fn).apply(this, arguments);
     var promiseCreated = ret._popContext();
     debug.checkForgottenReturns(
-        value, promiseCreated, &#x22;Promise.method&#x22;, ret);
+        value, promiseCreated, "Promise.method", ret);
     ret._resolveFromSyncValue(value);
     return ret;
 }</pre></li>
@@ -2344,20 +2337,20 @@ tags: function() {
 
 ### Can I use standard node.js style callbacks?
 
-Yes - you can call `.asCallback(function(err, resp) {` on any &#x22;sync&#x22; method and use the standard `(err, result)` style
+Yes - you can call `.asCallback(function(err, resp) {` on any "sync" method and use the standard `(err, result)` style
  callback interface if you prefer.
 
-### My relations don&#x27;t seem to be loading, what&#x27;s up?
+### My relations don't seem to be loading, what's up?
 
 Make sure you check that the type is correct for the initial parameters passed to the initial model being fetched. For example `
-new Model({id: &#x27;1&#x27;}).<span class="apidocCodeKeywordSpan">load</span>([relations...])` will not return the same as `Model
+new Model({id: '1'}).<span class="apidocCodeKeywordSpan">load</span>([relations...])` will not return the same as `Model
 ({id: 1}).load([relations...])` - notice that the id is a string in one case and a number in the other. This can be a common mistake
  if retrieving the id from a url parameter.
 
-This is only an issue if you&#x27;re eager loading data with load without first fetching the original model. `Model({id: &#x27;1
-&#x27;}).fetch({withRelated: [relations...]})` should work just fine.
+This is only an issue if you're eager loading data with load without first fetching the original model. `Model({id: '1
+'}).fetch({withRelated: [relations...]})` should work just fine.
 
-### My process won&#x27;t exit after my script is finished, why?
+### My process won't exit after my script is finished, why?
 
 The issue here is that Knex, the database abstraction layer used by Bookshelf, uses connection pooling and thus keeps the database
  connection open. If you want your process to exit after your script has finished, you will have to call `.destroy(cb)` on the `
@@ -2376,24 +2369,24 @@ knex` property of your `Bookshelf` instance or on the `Knex` instance passed dur
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function morphMany(Target, name, columnNames, morphValue) {
-  return this._morphOneOrMany(Target, name, columnNames, morphValue, &#x27;morphMany&#x27;);
+  return this._morphOneOrMany(Target, name, columnNames, morphValue, 'morphMany');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 * and `imageable_id`. The `morphValue` may be optionally set to
-* store/retrieve a different value in the `_type` column than the `Target`&#x27;s
+* store/retrieve a different value in the `_type` column than the `Target`'s
 * {@link Model#tableName tableName}.
 *
 *     let Post = bookshelf.Model.extend({
-*       tableName: &#x27;posts&#x27;,
+*       tableName: 'posts',
 *       photos: function() {
-*         return this.<span class="apidocCodeKeywordSpan">morphMany</span>(Photo, &#x27;imageable&#x27;);
+*         return this.<span class="apidocCodeKeywordSpan">morphMany</span>(Photo, 'imageable');
 *       }
 *     });
 *
 * And with custom columnNames:
 *
 *     let Post = bookshelf.Model.extend({
-*       tableName: &#x27;posts&#x27;,
+*       tableName: 'posts',
 ...</pre></li>
     </ul>
 
@@ -2407,7 +2400,7 @@ knex` property of your `Bookshelf` instance or on the `Knex` instance passed dur
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function morphOne(Target, name, columnNames, morphValue) {
-  return this._morphOneOrMany(Target, name, columnNames, morphValue, &#x27;morphOne&#x27;);
+  return this._morphOneOrMany(Target, name, columnNames, morphValue, 'morphOne');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 * below the table names would be `imageable_type` and `imageable_id`. The
@@ -2415,16 +2408,16 @@ knex` property of your `Bookshelf` instance or on the `Knex` instance passed dur
 * the `_type` column than the {@link Model#tableName}.
 *
 *     let Site = bookshelf.Model.extend({
-*       tableName: &#x27;sites&#x27;,
+*       tableName: 'sites',
 *       photo: function() {
-*         return this.<span class="apidocCodeKeywordSpan">morphOne</span>(Photo, &#x27;imageable&#x27;);
+*         return this.<span class="apidocCodeKeywordSpan">morphOne</span>(Photo, 'imageable');
 *       }
 *     });
 *
 * And with custom `columnNames`:
 *
 *     let Site = bookshelf.Model.extend({
-*       tableName: &#x27;sites&#x27;,
+*       tableName: 'sites',
 ...</pre></li>
     </ul>
 
@@ -2438,7 +2431,7 @@ knex` property of your `Bookshelf` instance or on the `Knex` instance passed dur
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function morphTo(morphName) {
-  if (!_lodash2.default.isString(morphName)) throw new Error(&#x27;The `morphTo` name must be specified.&#x27;);
+  if (!_lodash2.default.isString(morphName)) throw new Error('The `morphTo` name must be specified.');
   var columnNames = void 0,
       candidates = void 0;
   if (_lodash2.default.isArray(arguments[1])) {
@@ -2448,7 +2441,7 @@ knex` property of your `Bookshelf` instance or on the `Knex` instance passed dur
     columnNames = null;
     candidates = _lodash2.default.drop(arguments);
   }
-  return this._relation(&#x27;morphTo&#x27;, null, { morphName: morphName, columnNames: columnNames, candidates: candidates }).init(this);
+  return this._relation('morphTo', null, { morphName: morphName, columnNames: columnNames, candidates: candidates }).init(this);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 * morphMany} relations, where the `targets` must be passed to signify which
@@ -2456,16 +2449,16 @@ knex` property of your `Bookshelf` instance or on the `Knex` instance passed dur
 * polymorphicRelation polymorphic relation}.
 *
 *     let Photo = bookshelf.Model.extend({
-*       tableName: &#x27;photos&#x27;,
+*       tableName: 'photos',
 *       imageable: function() {
-*         return this.<span class="apidocCodeKeywordSpan">morphTo</span>(&#x27;imageable&#x27;, Site, Post);
+*         return this.<span class="apidocCodeKeywordSpan">morphTo</span>('imageable', Site, Post);
 *       }
 *     });
 *
 * And with custom columnNames:
 *
 *     let Photo = bookshelf.Model.extend({
-*       tableName: &#x27;photos&#x27;,
+*       tableName: 'photos',
 ...</pre></li>
     </ul>
 
@@ -2479,27 +2472,27 @@ knex` property of your `Bookshelf` instance or on the `Knex` instance passed dur
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function orderBy() {
-  for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 &#x3c; _len2; _key2++) {
+  for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 &lt; _len2; _key2++) {
     args[_key2] = arguments[_key2];
   }
 
   return _helpers2.default.orderBy.apply(_helpers2.default, [this].concat(args));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-* name. `orderBy(&#x22;date&#x22;, &#x27;DESC&#x27;)` is the same as `orderBy(&#x22;-date&#x22;)`.
+* name. `orderBy("date", 'DESC')` is the same as `orderBy("-date")`.
 *
-* Unless specified using dot notation (i.e., &#x22;table.column&#x22;), the default
+* Unless specified using dot notation (i.e., "table.column"), the default
 * table will be the table name of the model `orderBy` was called on.
 *
 * @example
 *
-* Cars.forge().<span class="apidocCodeKeywordSpan">orderBy</span>(&#x27;color&#x27;, &#x27;ASC&#x27;).fetch()
+* Cars.forge().<span class="apidocCodeKeywordSpan">orderBy</span>('color', 'ASC').fetch()
 *    .then(function (rows) { // ...
 *
 * @param sort {string}
 *   Column to sort on
 * @param order {string}
-*   Ascending (&#x27;ASC&#x27;) or descending (&#x27;DESC&#x27;) order
+*   Ascending ('ASC') or descending ('DESC') order
 */
 ...</pre></li>
     </ul>
@@ -2517,20 +2510,20 @@ knex` property of your `Bookshelf` instance or on the `Knex` instance passed dur
   return _helpers2.default.query(this, _lodash2.default.toArray(arguments));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-* Get the number of records in the collection&#x27;s table.
+* Get the number of records in the collection's table.
 *
 * @example
 *
-* // select count(*) from shareholders where company_id = 1 and share &#x26;gt; 0.1;
+* // select count(*) from shareholders where company_id = 1 and share &amp;gt; 0.1;
 * Company.forge({id:1})
 *   .shareholders()
-*   .<span class="apidocCodeKeywordSpan">query</span>(&#x27;where&#x27;, &#x27;share&#x27;, &#x27;&#x3e;&#x27;, &#x27;0.1&#x27;)
+*   .<span class="apidocCodeKeywordSpan">query</span>('where', 'share', '&gt;', '0.1')
 *   .count()
 *   .then(function(count) {
 *     assert(count === 3);
 *   });
 *
-* @param {string} [column=&#x27;*&#x27;]
+* @param {string} [column='*']
 *   Specify a column to count - rows with null values in this column will be excluded.
 ...</pre></li>
     </ul>
@@ -2570,7 +2563,7 @@ knex` property of your `Bookshelf` instance or on the `Knex` instance passed dur
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
  * @throws {Model.NotFoundError}
- * @returns {Promise&#x3c;Model|null&#x3e;}
+ * @returns {Promise&lt;Model|null&gt;}
  *  A promise resolving to the fetched {@link Model model} or `null` if none exists.
  */
 fetchOne: _promise2.default.method(function (options) {
@@ -2603,7 +2596,7 @@ fetchOne: _promise2.default.method(function (options) {
     var value = tryCatch(fn).apply(this, arguments);
     var promiseCreated = ret._popContext();
     debug.checkForgottenReturns(
-        value, promiseCreated, &#x22;Promise.method&#x22;, ret);
+        value, promiseCreated, "Promise.method", ret);
     ret._resolveFromSyncValue(value);
     return ret;
 }</pre></li>
@@ -2615,11 +2608,11 @@ fetchOne: _promise2.default.method(function (options) {
 * ```
 * const { courses, ...attributes } = req.body;
 *
-* Student.forge(attributes).<span class="apidocCodeKeywordSpan">save</span>().tap(student =&#x3e;
-*   Promise.map(courses, course =&#x3e; student.related(&#x27;courses&#x27;).create(course))
-* ).then(student =&#x3e;
+* Student.forge(attributes).<span class="apidocCodeKeywordSpan">save</span>().tap(student =&gt;
+*   Promise.map(courses, course =&gt; student.related('courses').create(course))
+* ).then(student =&gt;
 *   res.status(200).send(student)
-* ).catch(error =&#x3e;
+* ).catch(error =&gt;
 *   res.status(500).send(error.message)
 * );
 * ```
@@ -2643,13 +2636,13 @@ fetchOne: _promise2.default.method(function (options) {
    * @param {bool} [options.require=false] Trigger a {@link Collection.EmptyError} if no records are found.
    * @param {string|string[]} [options.withRelated=[]] A relation, or list of relations, to be eager loaded as part of the `fetch
 ` operation.
-   * @returns {Promise&#x3c;Collection&#x3e;}
+   * @returns {Promise&lt;Collection&gt;}
    */
   fetch: _promise2.default.method(function (options) {
 options = options ? (0, _lodash.clone)(options) : {};
 return this.<span class="apidocCodeKeywordSpan">sync</span>(options).select().bind(this).tap(function (response) {
   if (!response || response.length === 0) {
-    throw new this.constructor.EmptyError(&#x27;EmptyResponse&#x27;);
+    throw new this.constructor.EmptyError('EmptyResponse');
   }
 })
 
@@ -2703,23 +2696,23 @@ otherKeyTarget
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function where() {
-  for (var _len = arguments.length, args = Array(_len), _key = 0; _key &#x3c; _len; _key++) {
+  for (var _len = arguments.length, args = Array(_len), _key = 0; _key &lt; _len; _key++) {
     args[_key] = arguments[_key];
   }
 
-  return this.query.apply(this, [&#x27;where&#x27;].concat(args));
+  return this.query.apply(this, ['where'].concat(args));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
   }
 });
 
 var Tag = bookshelf.Model.extend({
-  tableName: &#x27;tags&#x27;
+  tableName: 'tags'
 })
 
-User.<span class="apidocCodeKeywordSpan">where</span>(&#x27;id&#x27;, 1).fetch({withRelated: [&#x27;posts.tags&#x27;]}).then(function
+User.<span class="apidocCodeKeywordSpan">where</span>('id', 1).fetch({withRelated: ['posts.tags']}).then(function
 (user) {
-  console.log(user.related(&#x27;posts&#x27;).toJSON());
+  console.log(user.related('posts').toJSON());
 }).catch(function(err) {
   console.error(err);
 });
@@ -2754,11 +2747,11 @@ User.<span class="apidocCodeKeywordSpan">where</span>(&#x27;id&#x27;, 1).fetch({
     this._receiver0 = undefined;
     this._resolveFromExecutor(executor);
     this._promiseCreated();
-    this._fireEvent(&#x22;promiseCreated&#x22;, this);
+    this._fireEvent("promiseCreated", this);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
  *
- *  @returns {Promise&#x3c;Collection&#x3e;} A promise resolving to this {@link
+ *  @returns {Promise&lt;Collection&gt;} A promise resolving to this {@link
  *  Collection collection}
  */
 load: _promise2.default.method(function (relations, options) {
@@ -2795,7 +2788,7 @@ load: _promise2.default.method(function (relations, options) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
  *
- *  @returns {Promise&#x3c;Collection&#x3e;} A promise resolving to this {@link
+ *  @returns {Promise&lt;Collection&gt;} A promise resolving to this {@link
  *  Collection collection}
  */
 load: _promise2.default.method(function (relations, options) {
@@ -2840,13 +2833,13 @@ load: _promise2.default.method(function (relations, options) {
    * @param {bool} [options.require=false] Trigger a {@link Collection.EmptyError} if no records are found.
    * @param {string|string[]} [options.withRelated=[]] A relation, or list of relations, to be eager loaded as part of the `fetch
 ` operation.
-   * @returns {Promise&#x3c;Collection&#x3e;}
+   * @returns {Promise&lt;Collection&gt;}
    */
   fetch: _promise2.default.method(function (options) {
 options = options ? (0, _lodash.clone)(options) : {};
 return this.<span class="apidocCodeKeywordSpan">sync</span>(options).select().bind(this).tap(function (response) {
   if (!response || response.length === 0) {
-    throw new this.constructor.EmptyError(&#x27;EmptyResponse&#x27;);
+    throw new this.constructor.EmptyError('EmptyResponse');
   }
 })
 
@@ -2876,7 +2869,7 @@ return this.<span class="apidocCodeKeywordSpan">sync</span>(options).select().bi
     var value = tryCatch(fn).apply(this, arguments);
     var promiseCreated = ret._popContext();
     debug.checkForgottenReturns(
-        value, promiseCreated, &#x22;Promise.method&#x22;, ret);
+        value, promiseCreated, "Promise.method", ret);
     ret._resolveFromSyncValue(value);
     return ret;
 }</pre></li>
@@ -2884,16 +2877,16 @@ return this.<span class="apidocCodeKeywordSpan">sync</span>(options).select().bi
 *
 * @example
 *
-* // select count(*) from shareholders where company_id = 1 and share &#x26;gt; 0.1;
+* // select count(*) from shareholders where company_id = 1 and share &amp;gt; 0.1;
 * Company.forge({id:1})
 *   .shareholders()
-*   .query(&#x27;where&#x27;, &#x27;share&#x27;, &#x27;&#x3e;&#x27;, &#x27;0.1&#x27;)
+*   .query('where', 'share', '&gt;', '0.1')
 *   .<span class="apidocCodeKeywordSpan">count</span>()
 *   .then(function(count) {
 *     assert(count === 3);
 *   });
 *
-* @param {string} [column=&#x27;*&#x27;]
+* @param {string} [column='*']
 *   Specify a column to count - rows with null values in this column will be excluded.
 * @param {Object=} options
 ...</pre></li>
@@ -2915,7 +2908,7 @@ return this.<span class="apidocCodeKeywordSpan">sync</span>(options).select().bi
     var value = tryCatch(fn).apply(this, arguments);
     var promiseCreated = ret._popContext();
     debug.checkForgottenReturns(
-        value, promiseCreated, &#x22;Promise.method&#x22;, ret);
+        value, promiseCreated, "Promise.method", ret);
     ret._resolveFromSyncValue(value);
     return ret;
 }</pre></li>
@@ -2925,12 +2918,12 @@ return this.<span class="apidocCodeKeywordSpan">sync</span>(options).select().bi
  * @param {Object} options  Options object passed to {@link Model#save save}.
  * @returns {Promise}
  */
-return this.triggerThen(&#x27;destroying&#x27;, this, options);
+return this.triggerThen('destroying', this, options);
     }).then(function () {
 return sync.<span class="apidocCodeKeywordSpan">del</span>();
     }).then(function (resp) {
-if (options.require &#x26;&#x26; resp === 0) {
-  throw new this.constructor.NoRowsDeletedError(&#x27;No Rows Deleted&#x27;);
+if (options.require &amp;&amp; resp === 0) {
+  throw new this.constructor.NoRowsDeletedError('No Rows Deleted');
 }
 this.clear();
 
@@ -2954,7 +2947,7 @@ this.clear();
     var value = tryCatch(fn).apply(this, arguments);
     var promiseCreated = ret._popContext();
     debug.checkForgottenReturns(
-        value, promiseCreated, &#x22;Promise.method&#x22;, ret);
+        value, promiseCreated, "Promise.method", ret);
     ret._resolveFromSyncValue(value);
     return ret;
 }</pre></li>
@@ -2968,10 +2961,10 @@ options = options ? _lodash2.default.clone(options) : {};
 // Run the `first` call on the `sync` object to fetch a single model.
 return this.sync(options).<span class="apidocCodeKeywordSpan">first</span>(attributes).bind(this)
 
-// Jump the rest of the chain if the response doesn&#x27;t exist...
+// Jump the rest of the chain if the response doesn't exist...
 .tap(function (response) {
   if (!response || response.length === 0) {
-    throw new this.constructor.NotFoundError(&#x27;EmptyResponse&#x27;);
+    throw new this.constructor.NotFoundError('EmptyResponse');
   }
 })
 ...</pre></li>
@@ -2993,18 +2986,18 @@ return this.sync(options).<span class="apidocCodeKeywordSpan">first</span>(attri
     var value = tryCatch(fn).apply(this, arguments);
     var promiseCreated = ret._popContext();
     debug.checkForgottenReturns(
-        value, promiseCreated, &#x22;Promise.method&#x22;, ret);
+        value, promiseCreated, "Promise.method", ret);
     ret._resolveFromSyncValue(value);
     return ret;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-        throw new Error(&#x27;No rows were updated&#x27;);
+        throw new Error('No rows were updated');
       }
       return numUpdated;
     });
   }
 
-  return this.triggerThen(&#x27;creating&#x27;, this, data, options).then(function () {
+  return this.triggerThen('creating', this, data, options).then(function () {
     return builder.<span class="apidocCodeKeywordSpan">insert</span>(data).then(function () {
       collection.add(item);
     });
@@ -3029,7 +3022,7 @@ return this.sync(options).<span class="apidocCodeKeywordSpan">first</span>(attri
   var tableName = this.syncing.tableName;
   var prefixed = {};
   for (var key in fields) {
-    prefixed[tableName + &#x27;.&#x27; + key] = fields[key];
+    prefixed[tableName + '.' + key] = fields[key];
   }
   return prefixed;
 }</pre></li>
@@ -3068,7 +3061,7 @@ return this.select();
     var value = tryCatch(fn).apply(this, arguments);
     var promiseCreated = ret._popContext();
     debug.checkForgottenReturns(
-        value, promiseCreated, &#x22;Promise.method&#x22;, ret);
+        value, promiseCreated, "Promise.method", ret);
     ret._resolveFromSyncValue(value);
     return ret;
 }</pre></li>
@@ -3077,13 +3070,13 @@ return this.select();
    * @param {bool} [options.require=false] Trigger a {@link Collection.EmptyError} if no records are found.
    * @param {string|string[]} [options.withRelated=[]] A relation, or list of relations, to be eager loaded as part of the `fetch
 ` operation.
-   * @returns {Promise&#x3c;Collection&#x3e;}
+   * @returns {Promise&lt;Collection&gt;}
    */
   fetch: _promise2.default.method(function (options) {
 options = options ? (0, _lodash.clone)(options) : {};
 return this.sync(options).<span class="apidocCodeKeywordSpan">select</span>().bind(this).tap(function (response) {
   if (!response || response.length === 0) {
-    throw new this.constructor.EmptyError(&#x27;EmptyResponse&#x27;);
+    throw new this.constructor.EmptyError('EmptyResponse');
   }
 })
 
@@ -3108,21 +3101,21 @@ return this.sync(options).<span class="apidocCodeKeywordSpan">select</span>().bi
     var value = tryCatch(fn).apply(this, arguments);
     var promiseCreated = ret._popContext();
     debug.checkForgottenReturns(
-        value, promiseCreated, &#x22;Promise.method&#x22;, ret);
+        value, promiseCreated, "Promise.method", ret);
     ret._resolveFromSyncValue(value);
     return ret;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    var model = collection.get(data[relatedData.key(&#x27;otherKey&#x27;)]);
+    var model = collection.get(data[relatedData.key('otherKey')]);
     if (model) {
       collection.remove(model);
     }
   });
 }
-if (method === &#x27;update&#x27;) {
+if (method === 'update') {
   return builder.where(data).<span class="apidocCodeKeywordSpan">update</span>(item).then(function (numUpdated) {
-    if (options &#x26;&#x26; options.require === true &#x26;&#x26; numUpdated === 0) {
-      throw new Error(&#x27;No rows were updated&#x27;);
+    if (options &amp;&amp; options.require === true &amp;&amp; numUpdated === 0) {
+      throw new Error('No rows were updated');
     }
     return numUpdated;
   });
@@ -3139,3 +3132,4 @@ if (method === &#x27;update&#x27;) {
     ]
 </div>
 </div>
+</body></html>
