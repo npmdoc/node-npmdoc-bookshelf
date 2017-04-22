@@ -1,9 +1,9 @@
-npmdoc-bookshelf@0.0.1 /home/travis/build/npmdoc/node-npmdoc-bookshelf
+npmdoc-bookshelf@0.0.2 /home/travis/build/npmdoc/node-npmdoc-bookshelf
 └─┬ knex@0.12.9 
   ├─┬ commander@2.9.0 
   │ └── graceful-readlink@1.0.1 
-  ├─┬ debug@2.6.3 
-  │ └── ms@0.7.2 
+  ├─┬ debug@2.6.4 
+  │ └── ms@0.7.3 
   ├── generic-pool@2.5.4 
   ├── interpret@0.6.6 
   ├─┬ liftoff@2.2.5 
@@ -15,7 +15,7 @@ npmdoc-bookshelf@0.0.1 /home/travis/build/npmdoc/node-npmdoc-bookshelf
   │ │ │ └── is-extglob@1.0.0 
   │ │ ├─┬ micromatch@2.3.11 
   │ │ │ ├─┬ arr-diff@2.0.0 
-  │ │ │ │ └── arr-flatten@1.0.2 
+  │ │ │ │ └── arr-flatten@1.0.3 
   │ │ │ ├── array-unique@0.2.1 
   │ │ │ ├─┬ braces@1.8.5 
   │ │ │ │ ├─┬ expand-range@1.8.2 
@@ -59,7 +59,7 @@ npmdoc-bookshelf@0.0.1 /home/travis/build/npmdoc/node-npmdoc-bookshelf
   │ │     └── is-windows@0.2.0 
   │ ├── flagged-respawn@0.3.2 
   │ ├── rechoir@0.6.2 
-  │ └─┬ resolve@1.3.2 
+  │ └─┬ resolve@1.3.3 
   │   └── path-parse@1.0.5 
   ├── minimist@1.1.3 
   ├─┬ mkdirp@0.5.1 
@@ -73,5 +73,5 @@ npmdoc-bookshelf@0.0.1 /home/travis/build/npmdoc/node-npmdoc-bookshelf
   ├─┬ tildify@1.0.0 
   │ └── user-home@1.1.1 
   ├── uuid@3.0.1 
-  └── v8flags@2.0.12 
+  └── v8flags@2.1.1 
 

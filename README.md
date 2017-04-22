@@ -1,9 +1,14 @@
-# api documentation for  [bookshelf (v0.10.3)](http://bookshelfjs.org)  [![npm package](https://img.shields.io/npm/v/npmdoc-bookshelf.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-bookshelf) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-bookshelf.svg)](https://travis-ci.org/npmdoc/node-npmdoc-bookshelf)
+# npmdoc-bookshelf
+
+#### api documentation for  [bookshelf (v0.10.3)](http://bookshelfjs.org)  [![npm package](https://img.shields.io/npm/v/npmdoc-bookshelf.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-bookshelf) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-bookshelf.svg)](https://travis-ci.org/npmdoc/node-npmdoc-bookshelf)
+
 #### A lightweight ORM for PostgreSQL, MySQL, and SQLite3
 
 [![NPM](https://nodei.co/npm/bookshelf.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/bookshelf)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-bookshelf/build/screenCapture.buildCi.browser.apidoc.html.png)](https://npmdoc.github.io/node-npmdoc-bookshelf/build/apidoc.html)
+- [https://npmdoc.github.io/node-npmdoc-bookshelf/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-bookshelf/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-bookshelf/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-bookshelf/build/apidoc.html)
 
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-bookshelf/build/screenCapture.npmPackageListing.svg)
 
@@ -117,190 +122,9 @@
         "prepublish": "npm run build",
         "test": "npm run lint &&  mocha --check-leaks -t 10000 -b test/index.js"
     },
-    "version": "0.10.3"
+    "version": "0.10.3",
+    "bin": {}
 }
-```
-
-
-
-# <a name="apidoc.tableOfContents"></a>[table of contents](#apidoc.tableOfContents)
-
-#### [module bookshelf](#apidoc.module.bookshelf)
-1.  [function <span class="apidocSignatureSpan"></span>bookshelf (knex)](#apidoc.element.bookshelf.bookshelf)
-1.  [function <span class="apidocSignatureSpan">bookshelf.</span>initialize (knex)](#apidoc.element.bookshelf.initialize)
-1.  [function <span class="apidocSignatureSpan">bookshelf.</span>toString ()](#apidoc.element.bookshelf.toString)
-
-
-
-# <a name="apidoc.module.bookshelf"></a>[module bookshelf](#apidoc.module.bookshelf)
-
-#### <a name="apidoc.element.bookshelf.bookshelf"></a>[function <span class="apidocSignatureSpan"></span>bookshelf (knex)](#apidoc.element.bookshelf.bookshelf)
-- description and source-code
-```javascript
-function Bookshelf(knex) {
-  var bookshelf = {
-    VERSION: require('../package.json').version
-  };
-
-  var Model = bookshelf.Model = _model2.default.extend({
-
-    _builder: builderFn,
-
-    // The 'Model' constructor is referenced as a property on the 'Bookshelf'
-    // instance, mixing in the correct 'builder' method, as well as the
-    // 'relation' method, passing in the correct 'Model' & 'Collection'
-    // constructors for later reference.
-    _relation: function _relation(type, Target, options) {
-      if (type !== 'morphTo' && !(0, _lodash.isFunction)(Target)) {
-        throw new Error('A valid target model must be defined for the ' + (0, _lodash.result)(this, 'tableName') + ' ' + type + '
-relation');
-      }
-      return new Relation(type, Target, options);
-    }
-  }, {
-
-<span class="apidocCodeCommentSpan">    /**
-     * @method Model.forge
-     * @belongsTo Model
-     * @description
-     *
-     * A simple helper function to instantiate a new Model without needing 'new'.
-     *
-     * @param {Object=} attributes Initial values for this model's attributes.
-     * @param {Object=}  options               Hash of options.
-     * @param {string=}  options.tableName     Initial value for {@linkcode Model#tableName tableName}.
-     * @param {boolean=} [options.hasTimestamps=false]
-     *
-     *   Initial value for {@linkcode Model#hasTimestamps hasTimestamps}.
-     *
-     * @param {boolean} [options.parse=false]
-     *
-     *   Convert attributes by {@linkcode Model#parse parse} before being
-     *   {@linkcode Model#set set} on the 'model'.
-     */
-</span>    forge: forge,
-
-    /**
-     * @method Model.collection
-     * @belongsTo Model
-     * @description
-     *
-     * A simple static helper to instantiate a new {@link Collection}, setting
-     * the current 'model' as the collection's target.
-     *
-     * @example
-     *
-     * Customer.collection().fetch().then(function(collection) {
-     *   // ...
-     * });
-     *
-     * @param {(Model[])=} models
-     * @param {Object=} options
-     * @returns {Collection}
-     */
-    collection: function collection(models, options) {
-      return new bookshelf.Collection(models || [], (0, _lodash.extend)({}, options, { model: this }));
-    },
-
-
-    /**
-     * @method Model.count
-     * @belongsTo Model
-     * @since 0.8.2
-     * @description
-     *
-     * Gets the number of matching records in the database, respecting any
-     * previous calls to {@link Model#query query}. If a 'column' is provided,
-     * records with a null value in that column will be excluded from the count.
-     *
-     * @param {string} [column='*']
-     *   Specify a column to count - rows with null values in this column will be excluded.
-     * @param {Object=} options
-     *   Hash of options.
-     * @returns {Promise<Number>}
-     *   A promise resolving to the number of matching rows.
-     */
-    count: function count(column, options) {
-      return this.forge().count(column, options);
-    },
-
-
-    /**
-     * @method Model.fetchAll
-     * @belongsTo Model
-     * @description
-     *
-     * Simple helper function for retrieving all instances of the given model.
-     *
-     * @see Model#fetchAll
-     * @returns {Promise<Collection>}
-     */
-    fetchAll: function fetchAll(options) {
-      return this.forge().fetchAll(options);
-    }
-  });
-
-  var Collection = bookshelf.Collection = _collection2.default.extend({
-
-    _builder: builderFn
-
-  }, {
-
-    /**
-     * @method Collection.forge
-     * @belongsTo Collection
-     * @description
-     *
-     * A simple helper function to instantiate a new Collection without needing
-     * new.
-     *
-     * @param {(Object[]|Model[])=} [models]
-     *   Set of models (or attribute hashes) with which to initialize the
-     *   collection.
-     * @param {Object} options Hash of options.
-     *
-     * @example
-     *
-     * var Promise = require('bluebird');
-     * var Accounts = bookshelf.Collection.extend({
-     *   model: Account
-     * });
-     *
-     * var accounts = Accounts.forge([
-     *   {name: 'Person1'},
-     *   {name: 'Person2'}
-     * ]);
-     *
-     * Promise.all(accounts.invoke('save')).then(funct ...
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.bookshelf.initialize"></a>[function <span class="apidocSignatureSpan">bookshelf.</span>initialize (knex)](#apidoc.element.bookshelf.initialize)
-- description and source-code
-```javascript
-initialize = function (knex) {
-  _helpers2.default.warn("Bookshelf.initialize is deprecated, pass knex directly: require('bookshelf')(knex)");
-  return new Bookshelf(knex);
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.bookshelf.toString"></a>[function <span class="apidocSignatureSpan">bookshelf.</span>toString ()](#apidoc.element.bookshelf.toString)
-- description and source-code
-```javascript
-toString = function () {
-    return toString;
-}
-```
-- example usage
-```shell
-n/a
 ```
 
 
